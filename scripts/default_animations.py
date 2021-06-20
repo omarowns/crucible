@@ -1,8 +1,9 @@
 import time
+from strip import Strip
 
-class DefaultAnimations(object):
+class DefaultAnimations:
     def __init__(self):
-       self.strip = self.strip
+        self.strip = Strip()
 
     def colorWipe(self, color, wait_ms=50):
         for i in range(self.strip.numPixels()):

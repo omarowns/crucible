@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-from strip import Strip
-from default_animations import DefaultAnimations
-from rpi_ws281x import Color
+from renderer import Renderer
 
 # Main program logic follows:
 if __name__ == '__main__':
@@ -12,7 +10,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     args = parser.parse_args()
 
-    strip = Strip(DefaultAnimations)
+    lightsRenderer = Renderer()
 
     print ('Press Ctrl-C to quit.')
     if not args.clear:
@@ -21,9 +19,7 @@ if __name__ == '__main__':
     try:
         while True:
             print ('Color wipe animations.')
-            strip.colorWipe(Color(255, 0, 0))  # Red wipe
-            strip.colorWipe(Color(0, 255, 0))  # Blue wipe
-            strip.colorWipe(Color(0, 0, 255))  # Green wipe
+            lightsRenderer.render()
             # print ('Theater chase animations.')
             # strip.theaterChase(Color(127, 127, 127))  # White theater chase
             # strip.theaterChase(Color(127,   0,   0))  # Red theater chase
