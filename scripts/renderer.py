@@ -11,5 +11,13 @@ class Renderer(DefaultAnimations):
         self.colorWipe(Color(*[0, 255, 0]))
         self.colorWipe(Color(*[0, 0, 255]))
 
+        self.theaterChase(Color(127, 127, 127))
+        self.theaterChase(Color(127,   0,   0))
+        self.theaterChase(Color(  0,   0, 127))
+
+        self.rainbow
+        self.rainbowCycle
+        self.theaterChaseRainbow
+
     def clear(self):
         self.colorWipe(Color(0,0,0), 10)
