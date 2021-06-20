@@ -1,6 +1,5 @@
 from rpi_ws281x import Adafruit_NeoPixel
 import argparse
-from default_animations import DefaultAnimations
 
 # LED strip configuration:
 LED_COUNT      = 16      # Number of LED pixels.
@@ -14,7 +13,7 @@ LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
 
 
-class Strip(DefaultAnimations):
+class Strip():
     _strip = None
 
     def __new__(cls):
