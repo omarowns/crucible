@@ -4,7 +4,7 @@ set :stage, :production
 # ======================
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
-server fetch(:server_address), user: 'pi', roles: %w{script}, ssh_options: { keys: ['~/.ssh/id_rsa'] }
+server fetch(:server_address), user: fetch(:user), roles: %w{scripts}, ssh_options: { keys: ["~/.ssh/#{fetch :user}@#{fetch :application}" ] }
 
 
 # Configuration

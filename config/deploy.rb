@@ -6,7 +6,8 @@ lock "~> 3.16.0"
 set :application, 'crucible'
 set :repo_url, "git@github.com:omarowns/#{fetch :application}.git"
 set :branch, 'main'
-set :deploy_to, "/home/#{fetch :application}"
+set :user, 'pi'
+set :deploy_to, "/home/#{fetch :user}/#{fetch :application}"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -34,7 +35,7 @@ set :pty, true
 # set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
-set :ssh_options, verify_host_key: :secure
+# set :ssh_options, always: :secure
 
 # Set server address
 ask(:server_address, "crucible.omargarcia.mx")
