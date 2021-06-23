@@ -50,9 +50,9 @@ class RainbowCycle():
             strip.show()
             time.sleep(wait_ms/1000.0)
 
-class TheaterChaseRainbow(wait_ms=50):
+class TheaterChaseRainbow():
     @classmethod
-    def call(cls, strip, led_start, led_end, color_args):
+    def call(cls, strip, led_start, led_end, wait_ms=50):
         """Rainbow movie theater light style chaser animation."""
         for j in range(256):
             for q in range(3):
