@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import argparse
+import time
+from scripts.default_animations import StaticAnimation
 from renderer import Renderer
 
 # Main program logic follows:
@@ -18,8 +20,11 @@ if __name__ == '__main__':
  
     try:
         while True:
-            print ('Color wipe animations.')
-            lightsRenderer.render()
+            lightsRenderer.render(StaticAnimation, 0, 6, [255,0,0])
+            time.sleep(500/1000.0)
+            lightsRenderer.render(StaticAnimation, 7, 13, [0,0,255])
+            time.sleep(500/1000.0)
+
             # print ('Theater chase animations.')
             # strip.theaterChase(Color(127, 127, 127))  # White theater chase
             # strip.theaterChase(Color(127,   0,   0))  # Red theater chase

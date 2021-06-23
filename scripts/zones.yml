@@ -1,0 +1,32 @@
+zones:
+  - id: 1
+    name: Main
+    led_start: 0
+    led_end: 15
+    actions:
+      - id: :sound_01
+        name: Sound 01
+        description: First Sound
+        sound:
+          file: /soundbank/sound_01.wav
+          length: 3000 # in ms
+        effects:
+          - name: colorWipe
+            args: [[255, 0, 0]]
+            duration: 1000
+          - name: theaterChase
+            args: [[127, 127, 127]]
+            duration: 2000
+      - id: :sound_02
+        name: Sound 02
+        description: Second Sound
+        sound:
+          file: /soundbank/sound_02.wav
+          length: 5000 # in ms
+        effects:
+          - name: colorWipe
+            args: [[255, 0, 0]]
+            duration: 3500
+          - name: colorWipe
+            args: [[127, 127, 127]]
+            duration: 1500
