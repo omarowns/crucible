@@ -2,7 +2,7 @@
 
 import argparse
 import time
-from scripts.default_animations import StaticAnimation
+from default_animations import StaticAnimation
 from renderer import Renderer
 
 # Main program logic follows:
