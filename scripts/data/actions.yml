@@ -2,6 +2,7 @@ actions:
   - id: police_siren
     name: Police Siren
     description: Red and blue flashing like police sirens
+    loop: 10
     sound:
       file: /soundbank/police_siren_01.wav
       length: 3000 # in ms

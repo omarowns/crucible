@@ -1,12 +1,19 @@
 from models.repositories import ActionRepository
 
 class Action():
-    def __init__(self, id=None, name="", description="", sound=None, effects=[]):
+    def __init__(self, id=None, name="", description="", loop=None, sound=None, effects=[]):
         self.id = id
         self.name = name
         self.description = description
+        self.loop = loop
         self.sound = sound
         self.effects = effects
+
+    def is_loopable(self) -> bool:
+        return self.loop != None
+
+    def loop_iterations(self) -> int:
+        return self.loop
 
     @classmethod
     def find_by(cls, key, value):

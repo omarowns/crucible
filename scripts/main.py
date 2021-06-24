@@ -29,7 +29,7 @@ if __name__ == '__main__':
     parser.add_argument('--zone', default="1", help='the zone to run the effect on')
     parser.add_argument('--action', help='action to run')
     program_arguments = parser.parse_args()
-    import pdb; pdb.set_trace()
+
     print ('Press Ctrl-C to quit.')
     if not program_arguments.clear:
         print('Use "-c" argument to clear LEDs on exit')
@@ -41,10 +41,12 @@ if __name__ == '__main__':
         zone = Zone.find_by("id", program_arguments.zone) or Zone.find_by("name", program_arguments.zone)
         action = Action.find_by("id", program_arguments.action) or Action.find_by("name", program_arguments.action)
 
-        for effect_item in action.effects:
-            EffectQueue().put([Effect(**effect_item), zone])
+        if action.is_loopable():
+            for _ in action.loop_iterations():
+                for effect_item in action.effects:
+                    EffectQueue().put([Effect(**effect_item), zone])
+                EffectQueue().join()
 
-        EffectQueue().join()
     except KeyboardInterrupt:
         if program_arguments.clear:
             Effect(name="ClearAnimation").stage().render()
