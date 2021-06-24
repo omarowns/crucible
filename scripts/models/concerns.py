@@ -40,7 +40,7 @@ class Animatable():
 
             for (klass, _) in implementations(getattr(import_module('animations'), 'compounds')):
                 try:
-                    self.animation_classes.add(getattr(import_module('animations.compunds'), klass))
+                    self.animation_classes.add(getattr(import_module('animations.compounds'), klass))
                 except:
                     pass
 
