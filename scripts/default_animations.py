@@ -10,32 +10,38 @@ class Animation():
 class SegmentableAnimation(Animation):
     def __init__(self, strip, args = {}):
         super().__init__(strip)
+        print(f'On init of SegmentableAnimation, args:{args}')
         self.led_start = args.get("led_start", 0)
         self.led_end = args.get("led_end", self.strip.numPixels())
 
 class ColorableAnimation(Animation):
     def __init__(self, strip, args = {}):
         super().__init__(strip)
+        print(f'On init of ColorableAnimation, args:{args}')
         self.color = Color(*args.get("color_args", [0,0,0]))
 
 class EndWaitableAnimation(Animation):
     def __init__(self, strip, args = {}):
         super().__init__(strip)
+        print(f'On init of EndWaitableAnimation, args:{args}')
         self.end_wait_ms = args.get("end_wait_ms", 500)
 
 class WaitableAnimation(Animation):
     def __init__(self, strip, args = {}):
         super().__init__(strip)
+        print(f'On init of WaitableAnimation, args:{args}')
         self.wait_ms = args.get("wait_ms", 50)
 
 class IntervalableAnimation(Animation):
     def __init__(self, strip, args = {}):
         super().__init__(strip)
+        print(f'On init of IntervalableAnimation, args:{args}')
         self.intervals = args.get("intervals", 5)
 
 class TimeoutableAnimation(Animation):
     def __init__(self, strip, args = {}):
         super().__init__(strip)
+        print(f'On init of TimeoutableAnimation, args:{args}')
         self.timeout_ms = args.get("timeout_ms", 5000)
 
 # Implementations
