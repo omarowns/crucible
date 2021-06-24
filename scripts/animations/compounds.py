@@ -26,5 +26,5 @@ class SirenAnimation(StaticAnimation):
             EffectQueue().put([effect, zone])
         EffectQueue().join()
 
-    def siren_effect_for(name, arguments):
-        Effect(name=name, arguments=arguments)
+    def siren_effect_for(self, arguments):
+        Effect(name=arguments.get("name"), arguments=arguments.get("arguments"))
