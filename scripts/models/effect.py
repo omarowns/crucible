@@ -5,7 +5,8 @@ from models.concerns import Animatable, StageableAnimation, RenderableAnimation
 
 class Effect(RenderableAnimation, StageableAnimation, Animatable):
     def __init__(self, name=None, arguments={}):
-        super().__init__()
+        super(Animatable).__init__()
+        super(StageableAnimation).__init__()
         self.id = id
         self.name = name
         self.arguments = arguments
