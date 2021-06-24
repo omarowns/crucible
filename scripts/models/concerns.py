@@ -1,10 +1,12 @@
 from inspect import getmembers as implementations
 from importlib import import_module
+from models.zone import Zone
 
 class Animatable():
     def __init__(self):
         self.animation_classes = []
         self.animation_class = None
+        self.animation = None
         self.load_animation_classes()
 
     def animation_for(self, name):
@@ -41,3 +43,22 @@ class Animatable():
             self.animation_classes = list(self.animation_classes)
         except:
             self.animation_classes = []
+
+class StageableAnimation(Animatable):
+    def __init__(self) -> None:
+        self.staged = False
+
+    def stage(self, zone=Zone):
+        self.stage_animation_with_zone(zone, self.arguments)
+        self.staged = True and bool(self.animation)
+
+    def stage_animation_with_zone(self, zone=Zone, arguments = {}):
+        if self.animation_class == None:
+            return
+
+        self.animation = self.animation_class({ "range": zone.range(), **arguments})
+
+class RenderableAnimation(StageableAnimation, Animatable):
+    def render(self):
+        if self.staged:
+            self.animation.render()
