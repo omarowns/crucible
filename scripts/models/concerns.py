@@ -19,10 +19,9 @@ class Animatable():
         self.animation_class = None
 
         for klass in self.animation_classes:
-            if type(klass).__name__ == 'str' and name == klass:
-                self.animation_class = klass
-            elif type(klass).__name__ != 'str' and name == klass.__name__:
-                self.animation_class = klass
+            if hasattr(klass, "__name__") and callable(getattr(klass, "__name__")):
+                if name == klass.__name__:
+                    self.animation_class = klass
 
         self.animation_class
 
