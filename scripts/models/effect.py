@@ -10,3 +10,6 @@ class Effect(RenderableAnimation):
         self.name = name
         self.arguments = arguments
         self.animation_for(self.name)
+
+    def stage(self, zone=Zone):
+        return super().stage(zone=zone, name=self.name, arguments=self.arguments)

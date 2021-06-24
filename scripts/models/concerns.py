@@ -46,13 +46,13 @@ class StageableAnimation(Animatable):
         super().__init__()
         self.staged = False
 
-    def stage(self, zone=Zone):
-        self.stage_animation_with_zone(zone, self.arguments)
+    def stage(self, zone=Zone, name={}, arguments={}):
+        self.stage_animation_with_zone(zone, name, arguments)
         self.staged = True and bool(self.animation)
 
-    def stage_animation_with_zone(self, zone=Zone, arguments = {}):
+    def stage_animation_with_zone(self, zone=Zone, name=None, arguments = {}):
         if self.animation_class == None:
-            if not self.load_animation_class():
+            if not self.load_animation_class(name):
                 return
 
         self.animation = self.animation_class({ "range": zone.range(), **arguments})
