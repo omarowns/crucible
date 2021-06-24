@@ -1,7 +1,6 @@
 import time
 from rpi_ws281x import Color
 from animations.basics import StaticAnimation
-from animations.factories import AnimationFactory
 from animations.interfaces import *
 from models.zone import Zone
 from models.effect import Effect
