@@ -1,6 +1,6 @@
 import time
 from rpi_ws281x import Color
-from interfaces import *
+from animations.interfaces import *
 
 class ClearAnimation(SegmentableAnimation):
     def render(self):
