@@ -4,7 +4,6 @@ from models.zone import Zone
 
 class Animatable():
     def __init__(self):
-        super().__init__()
         self.animation_classes = []
         self.animation_class = None
         self.animation = None
@@ -61,6 +60,9 @@ class StageableAnimation(Animatable):
         self.animation = self.animation_class({ "range": zone.range(), **arguments})
 
 class RenderableAnimation(StageableAnimation):
+    def __init__(self):
+        super().__init__()
+
     def render(self):
         if self.staged:
             self.animation.render()
