@@ -1,12 +1,11 @@
 import time
-from animations.basics import StaticAnimation
-from animations.interfaces import *
+from animations.interfaces import SegmentableAnimation
 
 from models.zone import Zone
 from models.effect import Effect
 from effect_queue import EffectQueue
 
-class SirenAnimation(StaticAnimation):
+class SirenAnimation(SegmentableAnimation):
 
     def __init__(self, args={}):
         super().__init__(args=args)
