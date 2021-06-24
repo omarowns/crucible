@@ -3,7 +3,6 @@ from rpi_ws281x import Color
 
 class Animation():
     def __init__(self, strip, args = {}):
-        print(f'Animation::__init__::DEBUG: strip: {strip}, args: {args}')
         self.strip = strip
         self.led_start = args.get("led_start", 0)
         self.led_end = args.get("led_end", 0)

@@ -12,4 +12,6 @@ class AnimationFactory():
         self.strip = Strip()
 
     def render(self, renderer_class, rest = None):
-        self._AVAILABLE_FACTORIES[renderer_class](self.strip, args = rest).render
+        animation = self._AVAILABLE_FACTORIES[renderer_class](self.strip, args = rest)
+        print(f'AnimationFactory::render::DEBUG: animation:{animation}')
+        animation.render
