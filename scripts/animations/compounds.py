@@ -19,11 +19,11 @@ class SirenAnimation(StaticAnimation, ClearableAnimation):
         self.siren_two_effect = self.siren_effect_for(args.get("siren_two"))
         self.clear_effect = Effect(name="ClearAnimation")
 
-    def render(self):
-        effects = [self.siren_one_effect, self.clear_effect, self.siren_two_effect, self.clear_effect]
-        zones = [self.first_zone, self.first_zone, self.last_zone, self.last_zone]
+        self.effects = [self.siren_one_effect, self.clear_effect, self.siren_two_effect, self.clear_effect]
+        self.zones = [self.first_zone, self.first_zone, self.last_zone, self.last_zone]
 
-        for (effect, zone) in zip(effects, zones):
+    def render(self):
+        for (effect, zone) in zip(self.effects, self.zones):
             EffectQueue().put([effect, zone])
         EffectQueue().join()
 

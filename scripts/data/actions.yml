@@ -1,5 +1,5 @@
 actions:
-  - id: :police_siren
+  - id: police_siren
     name: Police Siren
     description: Red and blue flashing like police sirens
     sound:
