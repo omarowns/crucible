@@ -42,7 +42,7 @@ if __name__ == '__main__':
         action = Action.find_by("id", program_arguments.action) or Action.find_by("name", program_arguments.action)
 
         if action.is_loopable():
-            for _ in action.loop_iterations():
+            for _ in range(0, action.loop_iterations()):
                 for effect_item in action.effects:
                     EffectQueue().put([Effect(**effect_item), zone])
                 EffectQueue().join()
