@@ -1,8 +1,8 @@
 import time
 from rpi_ws281x import Color
-from models.factories import AnimationFactory
-from animations.interfaces import *
 from animations.basics import StaticAnimation
+from animations.factories import AnimationFactory
+from animations.interfaces import *
 
 class SirenAnimation(StaticAnimation, ClearableAnimation):
     def render(self, siren_one, siren_two):

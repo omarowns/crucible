@@ -1,4 +1,4 @@
-from models.factories import AnimationFactory
+from animations.factories import AnimationFactory
 from models.zone import Zone
 
 class Effect():
