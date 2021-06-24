@@ -3,6 +3,7 @@ from rpi_ws281x import Color
 
 class Animation():
     def __init__(self, strip, args = {}):
+        print(f'Animation::__init__::DEBUG: strip: {strip}, args: {args}')
         self.strip = strip
         self.led_start = args.get("led_start", 0)
         self.led_end = args.get("led_end", 0)
@@ -17,7 +18,7 @@ class ClearAnimation(Animation):
 
 class StaticAnimation(Animation):
     def render(self):
-        print(f'DEBUG: {self.led_start}->{self.led_end}/{self.base_color_args}')
+        print(f'StaticAnimation::render::DEBUG: {self.led_start}->{self.led_end}/{self.base_color_args}')
         for i in range(self.led_start, self.led_end):
             self.strip.setPixelColor(i, Color(*self.base_color_args))
         self.strip.show()
