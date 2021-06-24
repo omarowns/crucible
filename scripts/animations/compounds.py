@@ -29,5 +29,5 @@ class SirenAnimation(StaticAnimation, ClearableAnimation):
 
     def siren_effect_for(args = {}):
         name = args.get("name")
-        attributes = args.get("attributes")
-        EffectBuilder(name=name, attributes=attributes)
+        arguments = args.get("arguments")
+        EffectBuilder(name=name, arguments=arguments)

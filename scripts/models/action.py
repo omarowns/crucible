@@ -1,5 +1,4 @@
 from models.repositories import ActionRepository
-from models.effect import Effect
 
 class Action():
     def __init__(self, id=None, name="", description="", sound=None, effects=[]):
@@ -7,7 +6,7 @@ class Action():
         self.name = name
         self.description = description
         self.sound = sound
-        self.effects = [Effect(**effect) for effect in effects]
+        self.effects = effects
 
     @classmethod
     def find_by(cls, key, value):

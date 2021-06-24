@@ -1,5 +1,8 @@
-from factories import AnimationFactory
+from inspect import getmembers as implementations
+from importlib import import_module
 from models.zone import Zone
+import animations.basics
+import animations.compounds
 
 class Effect():
     def __init__(self, name=None, arguments={}):
@@ -8,8 +11,15 @@ class Effect():
         self.arguments = arguments
 
     def stage(self, zone=Zone):
-        self.animation = AnimationFactory().build(self.name, { "range": zone.range(), **self.arguments })
+        self.animation = self.animation_class()({ "range": zone.range(), **self.arguments })
 
     def render(self):
         if self.animation:
             self.animation.render()
+
+    def animation_class(self):
+        if self.name in [klass for (klass, _) in implementations(animations.basics)]:
+            getattr(import_module('animations.basics'), self.name)
+        if self.name in [klass for (klass, _) in implementations(animations.compounds)]:
+            getattr(import_module('animations.compounds'), self.name)
+
