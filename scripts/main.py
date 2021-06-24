@@ -33,7 +33,7 @@ if __name__ == '__main__':
         zone = Zone.find_by("id", args.zone) or Zone.find_by("name", args.zone)
         action = Action.find_by("id", args.action) or Action.find_by("name", args.action)
         for effect_item in action.effects:
-            EffectQueue().put([Effect(**effect_item), zone])
+            EffectQueue().put_nowait([Effect(**effect_item), zone])
         import pdb; pdb.set_trace()
         EffectQueue().join()
     except KeyboardInterrupt:
