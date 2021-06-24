@@ -8,7 +8,7 @@ class Zone():
         self.end = end
 
     def range(self):
-        range(self.start, self.end)
+        [self.start, self.end]
 
     @classmethod
     def find_by(cls, key, value):

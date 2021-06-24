@@ -16,8 +16,7 @@ class SegmentableAnimation(Animation):
         super().__init__(args = args)
         self.led_start = args.get("led_start", 0)
         self.led_end = args.get("led_end", self.strip.numPixels())
-        import pdb; pdb.set_trace()
-        self.range = args.get("range", range(self.led_start, self.led_end))
+        self.range = args.get("range", [self.led_start, self.led_end])
 
 class ColorableAnimation(Animation):
     def __init__(self, args = {}):
@@ -46,6 +45,6 @@ class TimeoutableAnimation(Animation):
 
 class ClearableAnimation(SegmentableAnimation):
     def clear(self):
-        for i in self.range:
+        for i in range(*self.range):
             self.strip.setPixelColor(i, Color(0,0,0))
         self.strip.show()
