@@ -62,7 +62,7 @@ class StageableAnimation(Animatable):
             if not self.load_animation_class(name):
                 return
 
-        self.animation = self.animation_class(args={ "range": zone.range(), **arguments})
+        self.animation = self.animation_class(args={ "range": zone.range, **arguments})
 
 class RenderableAnimation(StageableAnimation):
     def __init__(self):
