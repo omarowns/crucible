@@ -29,6 +29,7 @@ if __name__ == '__main__':
  
     try:
         threading.Thread(target=effectWorker, daemon=True).start()
+
         zone = Zone().find_by("id", args.zone) or Zone().find_by("name", args.zone)
         action = Action().find_by("id", args.action) or Action().find_by("name", args.action)
         for effect in action.effects:
@@ -37,4 +38,3 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         if args.clear:
             Effect(name="ClearAnimation").stage().render()
-    

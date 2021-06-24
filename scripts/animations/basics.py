@@ -2,11 +2,9 @@ import time
 from rpi_ws281x import Color
 from animations.interfaces import *
 
-class ClearAnimation(SegmentableAnimation):
+class ClearAnimation(ClearableAnimation):
     def render(self):
-        for i in self.range:
-            self.strip.setPixelColor(i, Color(0,0,0))
-        self.strip.show()
+        self.clear()
 
 class StaticAnimation(SegmentableAnimation, ColorableAnimation, EndWaitableAnimation):
     def render(self):
