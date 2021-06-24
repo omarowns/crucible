@@ -2,36 +2,63 @@ import time
 from rpi_ws281x import Color
 
 class Animation():
-    def __init__(self, strip, args = {}):
+    def __init__(self, strip):
         self.strip = strip
-        self.led_start = args.get("led_start", 0)
-        self.led_end = args.get("led_end", 0)
-        self.base_color_args = args.get("base_color_args", [0,0,0])
 
-class ClearAnimation(Animation):
+# Interfaces
+
+class SegmentableAnimation(Animation):
+    def __init__(self, strip, args = {}):
+        super().__init__(strip)
+        self.led_start = args.get("led_start", 0)
+        self.led_end = args.get("led_end", self.strip.numPixels())
+
+class ColorableAnimation(Animation):
+    def __init__(self, strip, args = {}):
+        super().__init__(strip)
+        self.color = Color(*args.get("color_args", [0,0,0]))
+
+class EndWaitableAnimation(Animation):
+    def __init__(self, strip, args = {}):
+        super().__init__(strip)
+        self.end_wait_ms = args.get("end_wait_ms", 500)
+
+class WaitableAnimation(Animation):
+    def __init__(self, strip, args = {}):
+        super().__init__(strip)
+        self.wait_ms = args.get("wait_ms", 50)
+
+class IntervalableAnimation(Animation):
+    def __init__(self, strip, args = {}):
+        super().__init__(strip)
+        self.intervals = args.get("intervals", 5)
+
+class TimeoutableAnimation(Animation):
+    def __init__(self, strip, args = {}):
+        super().__init__(strip)
+        self.timeout_ms = args.get("timeout_ms", 5000)
+
+# Implementations
+
+class ClearAnimation(SegmentableAnimation):
     def render(self):
-        for i in range(self.strip.numPixels()):
+        for i in range(self.led_start, self.led_end):
             self.strip.setPixelColor(i, Color(0,0,0))
         self.strip.show()
 
-class StaticAnimation(Animation):
-    def __init__(self, strip, args = {}):
-        super().__init__(strip, args)
-        self.end_wait = args.get("end_wait", 500)
-
+class StaticAnimation(SegmentableAnimation, ColorableAnimation, EndWaitableAnimation):
     def render(self):
         for i in range(self.led_start, self.led_end):
             self.strip.setPixelColor(i, Color(*self.base_color_args))
         self.strip.show()
-        time.sleep(self.end_wait/1000.0)
+        time.sleep(self.end_wait_ms/1000.0)
 
-class ColorWipe():
-    @classmethod
-    def call(cls, strip, led_start, led_end, color_args, wait_ms=50):
-        for i in range(led_start, led_end):
-            strip.setPixelColor(i, Color(*color_args))
-            strip.show()
-            time.sleep(wait_ms/1000.0)
+class ColorWipe(SegmentableAnimation, ColorableAnimation, WaitableAnimation):
+    def render(self):
+        for i in range(self.led_start, self.led_end):
+            self.strip.setPixelColor(i, Color(*self.color_args))
+            self.strip.show()
+            time.sleep(self.wait_ms/1000.0)
 
 class TheaterChase():
     @classmethod
