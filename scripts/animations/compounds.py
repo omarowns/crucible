@@ -21,8 +21,8 @@ class SirenAnimation(SegmentableAnimation):
         self.zones = [self.first_zone, self.first_zone, self.last_zone, self.last_zone]
 
     def render(self):
+        import pdb; pdb.set_trace()
         for (effect, zone) in zip(self.effects, self.zones):
-            import pdb; pdb.set_trace()
             EffectQueue().put([effect, zone])
         EffectQueue().join()
 
