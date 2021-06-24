@@ -11,6 +11,7 @@ class Effect():
         self.arguments = arguments
 
     def stage(self, zone=Zone):
+        self.load_animation_classes()
         self.animation = self.animation_class()({ "range": zone.range(), **self.arguments })
 
     def render(self):
@@ -18,8 +19,14 @@ class Effect():
             self.animation.render()
 
     def animation_class(self):
-        if self.name in [klass for (klass, _) in implementations(getattr(import_module('animations'), 'basics'))]:
+        if self.name in self.animation_module_classes():
             getattr(import_module('animations.basics'), self.name)
-        if self.name in [klass for (klass, _) in implementations(getattr(import_module('animations'), 'compounds'))]:
+        if self.name in self.animation_module_classes():
             getattr(import_module('animations.compounds'), self.name)
 
+    def load_animation_classes(self):
+        import_module('animations.basics')
+        import_module('animations.compounds')
+        basic_classes = [klass for (klass, _) in implementations(getattr(import_module('animations'), 'basics'))]
+        compound_classes = [klass for (klass, _) in implementations(getattr(import_module('animations'), 'compounds'))]
+        self.animation_classes = [*basic_classes, *compound_classes]
