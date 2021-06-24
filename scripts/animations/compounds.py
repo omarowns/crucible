@@ -3,7 +3,7 @@ from animations.interfaces import SegmentableAnimation
 
 from models.zone import Zone
 from models.effect import Effect
-from effect_queue import EffectQueue
+from queues import SubEffectQueue
 
 class SirenAnimation(SegmentableAnimation):
 
@@ -22,8 +22,8 @@ class SirenAnimation(SegmentableAnimation):
 
     def render(self):
         for (effect, zone) in zip(self.effects, self.zones):
-            EffectQueue().put_nowait([effect, zone])
-        EffectQueue().join()
+            SubEffectQueue().put([effect, zone])
+        SubEffectQueue().join()
 
     def siren_effect_for(self, arguments):
         Effect(name=arguments.get("name"), arguments=arguments.get("arguments"))

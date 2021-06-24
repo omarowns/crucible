@@ -5,14 +5,21 @@ import threading
 from models.zone import Zone
 from models.action import Action
 from models.effect import Effect
-from effect_queue import EffectQueue
+from queues import EffectQueue, SubEffectQueue
 
-def effectWorker():
+def mainEffectWorker():
     while True:
         effect, zone = EffectQueue().get()
         effect.stage(zone=zone)
         effect.render()
         EffectQueue().task_done()
+
+def subEffectWorker():
+    while True:
+        effect, zone = SubEffectQueue().get()
+        effect.stage(zone=zone)
+        effect.render()
+        SubEffectQueue().task_done()
 
 # Main program logic follows:
 if __name__ == '__main__':
@@ -28,13 +35,15 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
  
     try:
-        threading.Thread(target=effectWorker, daemon=True).start()
+        threading.Thread(target=mainEffectWorker, daemon=True).start()
+        threading.Thread(target=subEffectWorker, daemon=True).start()
 
         zone = Zone.find_by("id", args.zone) or Zone.find_by("name", args.zone)
         action = Action.find_by("id", args.action) or Action.find_by("name", args.action)
+
         for effect_item in action.effects:
-            EffectQueue().put_nowait([Effect(**effect_item), zone])
-        import pdb; pdb.set_trace()
+            EffectQueue().put([Effect(**effect_item), zone])
+
         EffectQueue().join()
     except KeyboardInterrupt:
         if args.clear:
