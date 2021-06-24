@@ -13,5 +13,5 @@ class AnimationFactory():
         print("Strip initialized")
 
     def render(self, renderer_class, rest = None):
-        print(f'Invoking {renderer_class} with args {rest}')
+        print(f'Invoking {self._AVAILABLE_FACTORIES[renderer_class]} with args {rest}')
         self._AVAILABLE_FACTORIES[renderer_class](self.strip, args = rest).render
