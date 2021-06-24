@@ -1,6 +1,6 @@
 import yaml
 
-def YamlRepository():
+class YamlRepository():
     def __init__(self, file_path):
         with open(file_path, 'r') as file:
             self.source = yaml.safe_load(file)
