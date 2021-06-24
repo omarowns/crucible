@@ -28,23 +28,23 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     parser.add_argument('--zone', default="1", help='the zone to run the effect on')
     parser.add_argument('--action', help='action to run')
-    args = parser.parse_args()
-
+    program_arguments = parser.parse_args()
+    import pdb; pdb.set_trace()
     print ('Press Ctrl-C to quit.')
-    if not args.clear:
+    if not program_arguments.clear:
         print('Use "-c" argument to clear LEDs on exit')
  
     try:
         threading.Thread(target=mainEffectWorker, daemon=True).start()
         threading.Thread(target=subEffectWorker, daemon=True).start()
 
-        zone = Zone.find_by("id", args.zone) or Zone.find_by("name", args.zone)
-        action = Action.find_by("id", args.action) or Action.find_by("name", args.action)
+        zone = Zone.find_by("id", program_arguments.zone) or Zone.find_by("name", program_arguments.zone)
+        action = Action.find_by("id", program_arguments.action) or Action.find_by("name", program_arguments.action)
 
         for effect_item in action.effects:
             EffectQueue().put([Effect(**effect_item), zone])
 
         EffectQueue().join()
     except KeyboardInterrupt:
-        if args.clear:
+        if program_arguments.clear:
             Effect(name="ClearAnimation").stage().render()
