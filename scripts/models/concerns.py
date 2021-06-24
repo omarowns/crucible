@@ -19,7 +19,7 @@ class Animatable():
         self.animation_class = None
 
         for klass in self.animation_classes:
-            if hasattr(klass, "__name__") and callable(getattr(klass, "__name__")):
+            if hasattr(klass, "__name__") and callable(klass):
                 if name == klass.__name__:
                     self.animation_class = klass
 
