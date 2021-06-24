@@ -13,6 +13,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     animation_factory = AnimationFactory()
+    zone_one_args = {"led_start": 0, "led_end": 6, "color_args": [255,0,0]}
+    zone_two_args = {"led_start": 7, "led_end": 14, "color_args": [0,0,255]}
 
     print ('Press Ctrl-C to quit.')
     if not args.clear:
@@ -21,20 +23,9 @@ if __name__ == '__main__':
     try:
         while True:
             time.sleep(500/1000.0)
-
-            animation_factory.render(
-                "StaticAnimation",
-                led_start=0,
-                led_end=6,
-                color_args=[255,0,0])
-
+            animation_factory.render("StaticAnimation", zone_one_args)
             time.sleep(500/1000.0)
-
-            animation_factory.render(
-                "StaticAnimation",
-                led_start=0,
-                led_end=6,
-                color_args=[0,0,255])
+            animation_factory.render("StaticAnimation", zone_two_args)
 
             # print ('Theater chase animations.')
             # strip.theaterChase(Color(127, 127, 127))  # White theater chase
