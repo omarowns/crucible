@@ -34,6 +34,7 @@ if __name__ == '__main__':
         action = Action.find_by("id", args.action) or Action.find_by("name", args.action)
         for effect_item in action.effects:
             EffectQueue().put([Effect(**effect_item), zone])
+        import pdb; pdb.set_trace()
         EffectQueue().join()
     except KeyboardInterrupt:
         if args.clear:
