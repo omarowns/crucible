@@ -16,7 +16,7 @@ class ClearAnimation(Animation):
 
 class StaticAnimation(Animation):
     def __init__(self, strip, args = {}):
-        super(strip, args)
+        super().__init__(self, strip, args)
         self.end_wait = args.get("end_wait", 500)
 
     def render(self):
