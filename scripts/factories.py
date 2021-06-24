@@ -1,6 +1,7 @@
 from inspect import getmembers as implementations
 from importlib import import_module
-import animations
+import animations.basics
+import animations.compounds
 from strip import Strip
 
 class AnimationFactory():
@@ -16,7 +17,7 @@ class AnimationFactory():
         self.animation.render()
 
     def animation_class(self, renderer_class):
-        if renderer_class in implementations(animations.basics):
+        if renderer_class in [class for (class, _) in implementations(animations.basics)]:
             getattr(import_module('animations.basics'), renderer_class)
-        if renderer_class in implementations(animations.compounds):
+        if renderer_class in [class for (class, _) in implementations(animations.compounds)]:
             getattr(import_module('animations.compounds'), renderer_class)
