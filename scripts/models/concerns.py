@@ -19,8 +19,9 @@ class Animatable():
         self.animation_class = None
 
         for klass in self.animation_classes:
-            import pdb; pdb.set_trace()
-            if name == klass.__name__:
+            if type(klass).__name__ == 'str' and name == klass:
+                self.animation_class = klass
+            elif type(klass).__name__ != 'str' and name == klass.__name__:
                 self.animation_class = klass
 
         self.animation_class
