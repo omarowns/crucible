@@ -4,7 +4,7 @@ import os
 class YamlRepository():
 
     def __init__(self, file_name):
-        file_path = os.path.join(os.path.dirname(__file__), 'data', file_name)
+        file_path = os.path.join(os.path.dirname(__file__), '../data', file_name)
         with open(file_path, 'r') as file:
             self.source = yaml.safe_load(file)
 
