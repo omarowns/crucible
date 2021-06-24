@@ -9,8 +9,8 @@ from effect_queue import EffectQueue
 
 def effectWorker():
     while True:
-        effect = EffectQueue().get()
-        effect.stage()
+        effect, zone = EffectQueue().get()
+        effect.stage(zone=zone)
         effect.render()
         EffectQueue().task_done()
 
@@ -25,14 +25,14 @@ if __name__ == '__main__':
 
     print ('Press Ctrl-C to quit.')
     if not args.clear:
-        print('Use "-c" argument to clear LEDs on exit')    
+        print('Use "-c" argument to clear LEDs on exit')
  
     try:
         threading.Thread(target=effectWorker, daemon=True).start()
         zone = Zone().find_by("id", args.zone) or Zone().find_by("name", args.zone)
         action = Action().find_by("id", args.action) or Action().find_by("name", args.action)
         for effect in action.effects:
-            EffectQueue().put(effect)
+            EffectQueue().put([effect, zone])
         EffectQueue().join()
     except KeyboardInterrupt:
         if args.clear:

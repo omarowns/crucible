@@ -13,6 +13,7 @@ class SegmentableAnimation(Animation):
         print(f'{self} SegmentableAnimation, args:{args}')
         self.led_start = args.get("led_start", 0)
         self.led_end = args.get("led_end", self.strip.numPixels())
+        self.range = args.get("range", range(self.led_start, self.led_end))
 
 class ColorableAnimation(Animation):
     def __init__(self, strip, args = {}):
@@ -46,6 +47,6 @@ class TimeoutableAnimation(Animation):
 
 class ClearableAnimation(SegmentableAnimation):
     def clear(self):
-        for i in range(self.led_start, self.led_end):
+        for i in self.range:
             self.strip.setPixelColor(i, Color(0,0,0))
         self.strip.show()

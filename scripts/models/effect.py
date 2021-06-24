@@ -1,4 +1,5 @@
 from models.factories import AnimationFactory
+from models.zone import Zone
 
 class Effect():
     def __init__(self, name=None, arguments={}):
@@ -6,8 +7,8 @@ class Effect():
         self.name = name
         self.arguments = arguments
 
-    def stage(self):
-       self.animation = AnimationFactory().build(self.name, self.arguments)
+    def stage(self, zone=Zone):
+        self.animation = AnimationFactory().build(self.name, { "range": zone.range(), **self.arguments })
 
     def render(self):
         if self.animation:

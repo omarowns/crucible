@@ -6,7 +6,8 @@ from rpi_ws281x import Color
 class AnimationFactory():
     _AVAILABLE_FACTORIES = {
         "ClearAnimation": ClearAnimation,
-        "StaticAnimation": StaticAnimation
+        "StaticAnimation": StaticAnimation,
+        "SirenAnimation": SirenAnimation
     }
 
     def  __init__(self):
