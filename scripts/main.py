@@ -10,6 +10,7 @@ from queues import EffectQueue, SubEffectQueue
 def mainEffectWorker():
     while True:
         effect, zone = EffectQueue().get()
+        import pdb; pdb.set_trace()
         effect.stage(zone=zone)
         effect.render()
         EffectQueue().task_done()
@@ -17,6 +18,7 @@ def mainEffectWorker():
 def subEffectWorker():
     while True:
         effect, zone = SubEffectQueue().get()
+        import pdb; pdb.set_trace()
         effect.stage(zone=zone)
         effect.render()
         SubEffectQueue().task_done()
