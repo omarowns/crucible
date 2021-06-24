@@ -6,10 +6,13 @@ class AnimationFactory():
     def  __init__(self):
         self.strip = Strip()
 
-    def render(self, renderer_class, led_start=None, led_end=None, color_args=None):
-        renderer_class(self.strip, led_start=led_start, led_end=led_end, base_color_args=color_args).render
+    def render(self, renderer_class, *rest):
+        render_led_start = rest.led_start or None
+        render_led_end = rest.led_end or None
+        color_args = rest.color_args or None
 
-    def clear(self):
-        for i in range(self.strip.numPixels()):
-            self.strip.setPixelColor(i, Color(0,0,0))
-        self.strip.show()
+        renderer_class(
+            self.strip,
+            led_start=render_led_start,
+            led_end=render_led_end,
+            base_color_args=color_args).render

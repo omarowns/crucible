@@ -1,23 +1,25 @@
 import time
 from rpi_ws281x import Color
 
-
-class ClearAnimation():
-    def render(self, strip, *rest):
-        for i in range(strip.numPixels()):
-            strip.setPixelColor(i, Color(0,0,0))
-        strip.show()
-
-class StaticAnimation():
-    def __init__(self, led_start=None, led_end=None, base_color_args=None):
+class Animation():
+    def __init__(self, strip, led_start=None, led_end=None, base_color_args=None):
+        self.strip = strip
         self.led_start = led_start or 0
         self.led_end = led_end or 0
         self.base_color_args = base_color_args or [0,0,0]
 
-    def render(self, strip, led_start, led_end, color_args):
-        for i in range(led_start, led_end):
-            strip.setPixelColor(i, Color(*color_args))
-        strip.show()
+
+class ClearAnimation(Animation):
+    def render(self):
+        for i in range(self.strip.numPixels()):
+            self.strip.setPixelColor(i, Color(0,0,0))
+        self.strip.show()
+
+class StaticAnimation(Animation):
+    def render(self):
+        for i in range(self.led_start, self.led_end):
+            self.strip.setPixelColor(i, Color(*self.base_color_args))
+        self.strip.show()
 
 class ColorWipe():
     @classmethod
