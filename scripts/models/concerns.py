@@ -18,10 +18,9 @@ class Animatable():
     def load_animation_class(self, name):
         self.animation_class = None
 
-        for klass in self.animation_classes:
-            if hasattr(klass, "__name__") and callable(klass):
-                if name == klass.__name__:
-                    self.animation_class = klass
+        klasses = [klass for klass in [klass for klass in self.animation_classes if hasattr(klass, "__name__") and callable(klass)] if klass.__name__ == 'StaticAnimation']
+        if len(klasses) == 1:
+            self.animation_class = klasses[0]
 
         self.animation_class
 
