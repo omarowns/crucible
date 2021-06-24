@@ -7,6 +7,7 @@ class Animatable():
         self.animation_classes = []
         self.animation_class = None
         self.animation = None
+        import pdb; pdb.set_trace()
         self.load_animation_classes()
 
     def animation_for(self, name):
