@@ -17,7 +17,6 @@ class ClearAnimation(Animation):
 
 class StaticAnimation(Animation):
     def render(self):
-        print(f'StaticAnimation::render::DEBUG: {self.led_start}->{self.led_end}/{self.base_color_args}')
         for i in range(self.led_start, self.led_end):
             self.strip.setPixelColor(i, Color(*self.base_color_args))
         self.strip.show()
