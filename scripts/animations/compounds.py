@@ -24,8 +24,8 @@ class SirenAnimation(StaticAnimation, ClearableAnimation):
 
     def render(self):
         for (effect, zone) in zip(self.effects, self.zones):
-            EffectQueue().put([effect, zone])
-        EffectQueue().join()
+            EffectQueue.put([effect, zone])
+        EffectQueue.join()
 
     def siren_effect_for(args = {}):
         name = args.get("name")

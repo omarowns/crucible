@@ -9,10 +9,10 @@ from effect_queue import EffectQueue
 
 def effectWorker():
     while True:
-        effect, zone = EffectQueue().get()
+        effect, zone = EffectQueue.get()
         effect.stage(zone=zone)
         effect.render()
-        EffectQueue().task_done()
+        EffectQueue.task_done()
 
 # Main program logic follows:
 if __name__ == '__main__':
@@ -30,11 +30,11 @@ if __name__ == '__main__':
     try:
         threading.Thread(target=effectWorker, daemon=True).start()
 
-        zone = Zone().find_by("id", args.zone) or Zone().find_by("name", args.zone)
-        action = Action().find_by("id", args.action) or Action().find_by("name", args.action)
+        zone = Zone.find_by("id", args.zone) or Zone.find_by("name", args.zone)
+        action = Action.find_by("id", args.action) or Action.find_by("name", args.action)
         for effect in action.effects:
-            EffectQueue().put([effect, zone])
-        EffectQueue().join()
+            EffectQueue.put([effect, zone])
+        EffectQueue.join()
     except KeyboardInterrupt:
         if args.clear:
             Effect(name="ClearAnimation").stage().render()
