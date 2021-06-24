@@ -14,4 +14,5 @@ class AnimationFactory():
     def render(self, renderer_class, rest = None):
         animation = self._AVAILABLE_FACTORIES[renderer_class](self.strip, args = rest)
         print(f'AnimationFactory::render::DEBUG: animation:{animation}')
+        import pdb; pdb.set_trace()
         animation.render
