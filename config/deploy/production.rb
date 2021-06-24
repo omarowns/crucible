@@ -16,7 +16,7 @@ namespace :deploy do
     end
   end
 end
-after :starting, :clear_py_cache
+after :started, :clear_py_cache
 
 # Configuration
 # =============
