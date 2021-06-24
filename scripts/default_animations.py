@@ -2,11 +2,11 @@ import time
 from rpi_ws281x import Color
 
 class Animation():
-    def __init__(self, strip, led_start=None, led_end=None, base_color_args=None):
+    def __init__(self, strip, args = {}):
         self.strip = strip
-        self.led_start = led_start or 0
-        self.led_end = led_end or 0
-        self.base_color_args = base_color_args or [0,0,0]
+        self.led_start = args["led_start"] or 0
+        self.led_end = args["led_end"] or 0
+        self.base_color_args = args["base_color_args"] or [0,0,0]
 
 
 class ClearAnimation(Animation):
