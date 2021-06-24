@@ -32,11 +32,18 @@ class Animatable():
             self.animation_classes = set([])
 
             for (klass, _) in implementations(getattr(import_module('animations'), 'basics')):
-                self.animation_classes.add(getattr(import_module('animations.basics'), klass))
+                try:
+                    self.animation_classes.add(getattr(import_module('animations.basics'), klass))
+                except:
+                    pass
 
             for (klass, _) in implementations(getattr(import_module('animations'), 'compounds')):
-                self.animation_classes.add(getattr(import_module('animations.compunds'), klass))
+                try:
+                    self.animation_classes.add(getattr(import_module('animations.compunds'), klass))
+                except:
+                    pass
 
+            import pdb; pdb.set_trace()
             self.animation_classes = [*self.animation_classes]
         except:
             self.animation_classes = []
