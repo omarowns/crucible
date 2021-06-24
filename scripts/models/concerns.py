@@ -19,6 +19,7 @@ class Animatable():
         self.animation_class = None
 
         for klass in self.animation_classes:
+            import pdb; pdb.set_trace()
             if name == klass.__name__:
                 self.animation_class = klass
 
@@ -43,7 +44,6 @@ class Animatable():
                 except:
                     pass
 
-            import pdb; pdb.set_trace()
             self.animation_classes = [*self.animation_classes]
         except:
             self.animation_classes = []
