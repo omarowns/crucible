@@ -20,6 +20,7 @@ class Animatable():
 
         klasses = [klass for klass in [klass for klass in self.animation_classes if hasattr(klass, "__name__") and callable(klass)] if klass.__name__ == 'StaticAnimation']
         if len(klasses) == 1:
+            import pdb; pdb.set_trace()
             self.animation_class = klasses[0]
 
         self.animation_class
