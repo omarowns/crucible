@@ -13,13 +13,13 @@ class Zone():
     @classmethod
     def find_by(cls, key, value):
         try:
-            cls(**cls.find_all(key, value)[0])
+            return cls(**cls.find_all(key, value)[0])
         except IndexError:
             None
 
     @classmethod
     def find_all(cls, key, value):
         try:
-            [zone for zone in ZoneRepository().zones if zone.get(key) == value]
+            return [zone for zone in ZoneRepository().zones if zone.get(key) == value]
         except:
             [None]

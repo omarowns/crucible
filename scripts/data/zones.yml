@@ -1,13 +1,13 @@
 zones:
   - id: 1
     name: Main
-    led_start: 0
-    led_end: 15
+    start: 0
+    end: 15
   - id: 2
     name: First Half
-    led_start: 0
-    led_end: 6
+    start: 0
+    end: 6
   - id: 3
     name: Second Half
-    led_start: 7
-    led_end: 14
+    start: 7
+    end: 14

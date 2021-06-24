@@ -10,14 +10,14 @@ class Action():
     @classmethod
     def find_by(cls, key, value):
         try:
-            cls(**cls.find_all(key, value)[0])
+            return cls(**cls.find_all(key, value)[0])
         except IndexError:
             None
 
     @classmethod
     def find_all(cls, key, value):
         try:
-            [action for action in ActionRepository().actions if action.get(key) == value]
+            return [action for action in ActionRepository().actions if action.get(key) == value]
         except:
             [None]
         
