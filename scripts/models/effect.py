@@ -3,10 +3,9 @@ from models.concerns import Animatable, StageableAnimation, RenderableAnimation
 # import animations.basics
 # import animations.compounds
 
-class Effect(RenderableAnimation, StageableAnimation, Animatable):
+class Effect(RenderableAnimation):
     def __init__(self, name=None, arguments={}):
-        super(Animatable).__init__()
-        super(StageableAnimation).__init__()
+        super().__init__()
         self.id = id
         self.name = name
         self.arguments = arguments
