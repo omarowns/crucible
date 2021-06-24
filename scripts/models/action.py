@@ -1,5 +1,5 @@
-from repositories import ActionRepository
-from effect import Effect
+from models.repositories import ActionRepository
+from models.effect import Effect
 
 class Action():
     def __new__(cls):

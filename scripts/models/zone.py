@@ -1,4 +1,4 @@
-from repositories import ZoneRepository
+from models.repositories import ZoneRepository
 
 class Zone():
     def __new__(cls):
