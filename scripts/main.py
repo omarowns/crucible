@@ -10,6 +10,7 @@ from effect_queue import EffectQueue
 def effectWorker():
     while True:
         effect, zone = EffectQueue().get()
+        import pdb; pdb.set_trace()
         effect.stage(zone=zone)
         effect.render()
         EffectQueue().task_done()
