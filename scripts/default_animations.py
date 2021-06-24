@@ -54,6 +54,7 @@ class ClearAnimation(SegmentableAnimation):
 
 class StaticAnimation(SegmentableAnimation, ColorableAnimation, EndWaitableAnimation):
     def render(self):
+        import pdb; pdb.set_trace()
         for i in range(self.led_start, self.led_end):
             self.strip.setPixelColor(i, self.color)
         self.strip.show()
