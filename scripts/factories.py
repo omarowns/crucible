@@ -1,8 +1,10 @@
+from inspect import getmembers as implementations
+from importlib import import_module
+import animations
+from strip import Strip
+from models.effect import Effect
+
 class AnimationFactory():
-    from inspect import getmembers as implementations
-    from importlib import import_module
-    import animations
-    from strip import Strip
 
     def  __init__(self):
         self.strip = Strip()
@@ -20,9 +22,7 @@ class AnimationFactory():
         if renderer_class in implementations(animations.compounds):
             getattr(import_module('animations.compounds'), renderer_class)
 
-from models.effect import Effect
 class EffectFactory():
-
     @classmethod
     def build(self, name=None, args = {}):
         Effect(name=name, args=args)

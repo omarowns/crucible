@@ -1,6 +1,7 @@
+import yaml
+import os
+
 class YamlRepository():
-    import yaml
-    import os
 
     def __init__(self, file_name):
         file_path = os.path.join(os.path.dirname(__file__), 'data', file_name)
