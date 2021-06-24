@@ -9,5 +9,15 @@ class Action():
 
     @classmethod
     def find_by(cls, key, value):
-        cls(**[action for action in ActionRepository().actions if action.get(key) == value][0])
+        try:
+            cls(**cls.find_all(key, value)[0])
+        except IndexError:
+            None
+
+    @classmethod
+    def find_all(cls, key, value):
+        try:
+            [action for action in ActionRepository().actions if action.get(key) == value]
+        except:
+            [None]
         

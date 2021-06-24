@@ -12,5 +12,14 @@ class Zone():
 
     @classmethod
     def find_by(cls, key, value):
-        cls(**[zone for zone in ZoneRepository().zones if zone.get(key) == value][0])
-        
+        try:
+            cls(**cls.find_all(key, value)[0])
+        except IndexError:
+            None
+
+    @classmethod
+    def find_all(cls, key, value):
+        try:
+            [zone for zone in ZoneRepository().zones if zone.get(key) == value]
+        except:
+            [None]
