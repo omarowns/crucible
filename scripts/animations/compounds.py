@@ -4,7 +4,7 @@ from animations.basics import StaticAnimation
 from animations.interfaces import *
 
 from models.zone import Zone
-from models.effect import Effect
+from models.effect import Effect as EffectBuilder
 from effect_queue import EffectQueue
 
 class SirenAnimation(StaticAnimation, ClearableAnimation):
@@ -17,7 +17,7 @@ class SirenAnimation(StaticAnimation, ClearableAnimation):
 
         self.siren_one_effect = self.siren_effect_for(args.get("siren_one"))
         self.siren_two_effect = self.siren_effect_for(args.get("siren_two"))
-        self.clear_effect = Effect(name="ClearAnimation")
+        self.clear_effect = EffectBuilder(name="ClearAnimation")
 
         self.effects = [self.siren_one_effect, self.clear_effect, self.siren_two_effect, self.clear_effect]
         self.zones = [self.first_zone, self.first_zone, self.last_zone, self.last_zone]
@@ -30,4 +30,4 @@ class SirenAnimation(StaticAnimation, ClearableAnimation):
     def siren_effect_for(args = {}):
         name = args.get("name")
         attributes = args.get("attributes")
-        Effect(name=name, attributes=attributes)
+        EffectBuilder(name=name, attributes=attributes)
