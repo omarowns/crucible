@@ -24,16 +24,16 @@ if __name__ == '__main__':
 
             animation_factory.render(
                 "StaticAnimation",
-                renderer_led_start=0,
-                renderer_led_end=6,
+                led_start=0,
+                led_end=6,
                 color_args=[255,0,0])
 
             time.sleep(500/1000.0)
 
             animation_factory.render(
                 "StaticAnimation",
-                renderer_led_start=0,
-                renderer_led_end=6,
+                led_start=0,
+                led_end=6,
                 color_args=[0,0,255])
 
             # print ('Theater chase animations.')
