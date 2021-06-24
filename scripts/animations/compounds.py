@@ -6,10 +6,10 @@ from models.zone import Zone
 from models.effect import Effect
 from effect_queue import EffectQueue
 
-class SirenAnimation(StaticAnimation, ClearableAnimation):
+class SirenAnimation(StaticAnimation):
 
-    def __init__(self, strip, args):
-        super().__init__(strip, args=args)
+    def __init__(self, args={}):
+        super().__init__(args=args)
         
         self.first_zone = Zone(start=self.range[0], end=(self.range[-1]/2))
         self.last_zone = Zone(start=(self.range[-1]/2), end=self.range[-1])
