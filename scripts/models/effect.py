@@ -5,6 +5,8 @@ from models.concerns import Animatable, StageableAnimation, RenderableAnimation
 
 class Effect(RenderableAnimation):
     def __init__(self, name=None, arguments={}):
+        import pdb; pdb.set_trace()
+
         super().__init__()
         self.id = id
         self.name = name
