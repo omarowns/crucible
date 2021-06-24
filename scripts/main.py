@@ -19,8 +19,8 @@ if __name__ == '__main__':
     # Process arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
-    parser.add_argument('-z', '--zone', action='store_true', help='the zone to run the effect on')
-    parser.add_argument('-a', '--action', action='store_true', help='action to run')
+    parser.add_argument('zone', type=str, default="1", action='store_true', help='the zone to run the effect on')
+    parser.add_argument('action', type=str, action='store_true', help='action to run')
     args = parser.parse_args()
 
     print ('Press Ctrl-C to quit.')
