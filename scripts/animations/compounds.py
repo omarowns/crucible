@@ -17,7 +17,7 @@ class SirenAnimation(StaticAnimation, ClearableAnimation):
 
         self.siren_one_effect = self.siren_effect_for(args.get("siren_one"))
         self.siren_two_effect = self.siren_effect_for(args.get("siren_two"))
-        self.clear_effect = EffectFactory().build("ClearAnimation")
+        self.clear_effect = Effect(name="ClearAnimation")
 
     def render(self):
         effects = [self.siren_one_effect, self.clear_effect, self.siren_two_effect, self.clear_effect]

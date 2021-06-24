@@ -7,10 +7,10 @@ class YamlRepository():
 
 class ZoneRepository(YamlRepository):
     def __init__(self):
-        super().__init__('data/zones.yml')
+        super().__init__('../data/zones.yml')
         self.zones = self.source.get('zones')
 
 class ActionRepository(YamlRepository):
     def __init__(self) -> None:
-        super().__init__('data/actions.yml')
+        super().__init__('../data/actions.yml')
         self.actions = self.source.get('actions')
