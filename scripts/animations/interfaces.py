@@ -16,6 +16,7 @@ class SegmentableAnimation(Animation):
         super().__init__(args = args)
         self.led_start = args.get("led_start", 0)
         self.led_end = args.get("led_end", self.strip.numPixels())
+        import pdb; pdb.set_trace()
         self.range = args.get("range", range(self.led_start, self.led_end))
 
 class ColorableAnimation(Animation):
