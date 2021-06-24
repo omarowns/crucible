@@ -8,7 +8,6 @@ class Animation():
         self.led_end = args.get("led_end", 0)
         self.base_color_args = args.get("base_color_args", [0,0,0])
 
-
 class ClearAnimation(Animation):
     def render(self):
         for i in range(self.strip.numPixels()):
@@ -16,10 +15,15 @@ class ClearAnimation(Animation):
         self.strip.show()
 
 class StaticAnimation(Animation):
+    def __init__(self, strip, args = {}):
+        super(strip, args)
+        self.end_wait = args.get("end_wait", 500)
+
     def render(self):
         for i in range(self.led_start, self.led_end):
             self.strip.setPixelColor(i, Color(*self.base_color_args))
         self.strip.show()
+        time.sleep(self.end_wait/1000.0)
 
 class ColorWipe():
     @classmethod

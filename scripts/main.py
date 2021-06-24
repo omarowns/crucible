@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import argparse
-import time
 from default_animations import StaticAnimation, ClearAnimation
 from animation_factory import AnimationFactory
 
@@ -13,8 +12,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     animation_factory = AnimationFactory()
-    zone_one_args = {"led_start": 0, "led_end": 6, "base_color_args": [255,0,0]}
-    zone_two_args = {"led_start": 7, "led_end": 14, "base_color_args": [0,0,255]}
+    zone_one_args = {"led_start": 0, "led_end": 6, "base_color_args": [255,0,0], "end_wait": 500}
+    zone_two_args = {"led_start": 7, "led_end": 14, "base_color_args": [0,0,255], "end_wait": 500}
 
     print ('Press Ctrl-C to quit.')
     if not args.clear:
@@ -22,10 +21,10 @@ if __name__ == '__main__':
  
     try:
         while True:
-            time.sleep(500/1000.0)
             animation_factory.render("StaticAnimation", zone_one_args)
-            time.sleep(500/1000.0)
+            animation_factory.render("ClearAnimation")
             animation_factory.render("StaticAnimation", zone_two_args)
+            animation_factory.render("ClearAnimation")
 
             # print ('Theater chase animations.')
             # strip.theaterChase(Color(127, 127, 127))  # White theater chase
@@ -38,4 +37,4 @@ if __name__ == '__main__':
 
     except KeyboardInterrupt:
         if args.clear:
-            animation_factory.render(ClearAnimation)
+            animation_factory.render("ClearAnimation")
