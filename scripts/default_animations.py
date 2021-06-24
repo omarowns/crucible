@@ -4,9 +4,9 @@ from rpi_ws281x import Color
 class Animation():
     def __init__(self, strip, args = {}):
         self.strip = strip
-        self.led_start = args["led_start"] or 0
-        self.led_end = args["led_end"] or 0
-        self.base_color_args = args["base_color_args"] or [0,0,0]
+        self.led_start = args.get("led_start", 0)
+        self.led_end = args.get("led_end", 0)
+        self.base_color_args = args.get("base_color_args", [0,0,0])
 
 
 class ClearAnimation(Animation):
