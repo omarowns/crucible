@@ -2,8 +2,8 @@
 
 import argparse
 import time
-from default_animations import StaticAnimation
-from renderer import Renderer
+from default_animations import StaticAnimation, ClearAnimation
+from animation_factory import AnimationFactory
 
 # Main program logic follows:
 if __name__ == '__main__':
@@ -12,7 +12,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     args = parser.parse_args()
 
-    lightsRenderer = Renderer()
+    animation_factory = AnimationFactory()
 
     print ('Press Ctrl-C to quit.')
     if not args.clear:
@@ -20,9 +20,9 @@ if __name__ == '__main__':
  
     try:
         while True:
-            lightsRenderer.render(StaticAnimation, 0, 6, [255,0,0])
+            animation_factory.render(StaticAnimation, 0, 6, color_args=[255,0,0])
             time.sleep(500/1000.0)
-            lightsRenderer.render(StaticAnimation, 7, 13, [0,0,255])
+            animation_factory.render(StaticAnimation, 7, 13, [0,0,255])
             time.sleep(500/1000.0)
 
             # print ('Theater chase animations.')
@@ -36,4 +36,4 @@ if __name__ == '__main__':
 
     except KeyboardInterrupt:
         if args.clear:
-            lightsRenderer.clear()
+            animation_factory.render(ClearAnimation)
