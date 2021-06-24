@@ -2,24 +2,32 @@ import time
 from rpi_ws281x import Color
 from animations.basics import StaticAnimation
 from animations.interfaces import *
+
 from models.zone import Zone
 from models.effect import Effect
 from effect_queue import EffectQueue
 
 class SirenAnimation(StaticAnimation, ClearableAnimation):
-    def render(self, siren_one, siren_two):
-        first_siren_effect = Effect(siren_one.get("name"), siren_one.get("arguments"))
-        second_siren_effect = Effect(siren_two.get("name"), siren_two.get("arguments"))
-        clear_effect = Effect("ClearAnimation")
 
-        first_siren_zone = Zone(start=self.range[0], end=self.range[-1]/2)
-        second_siren_zone = Zone(start=self.range[-1]/2, end=self.range[-1])
+    def __init__(self, strip, args):
+        super().__init__(strip, args=args)
+        
+        self.first_zone = Zone(start=self.range[0], end=(self.range[-1]/2))
+        self.last_zone = Zone(start=(self.range[-1]/2), end=self.range[-1])
 
-        effects = [first_siren_zone, clear_effect, second_siren_effect, clear_effect]
-        zones = [first_siren_zone, first_siren_zone, second_siren_zone, second_siren_zone]
+        self.siren_one_effect = self.siren_effect_for(args.get("siren_one"))
+        self.siren_two_effect = self.siren_effect_for(args.get("siren_two"))
+        self.clear_effect = EffectFactory().build("ClearAnimation")
 
-        effect_zones = zip(effects, zones)
+    def render(self):
+        effects = [self.siren_one_effect, self.clear_effect, self.siren_two_effect, self.clear_effect]
+        zones = [self.first_zone, self.first_zone, self.last_zone, self.last_zone]
 
-        for (effect, zone) in effect_zones:
+        for (effect, zone) in zip(effects, zones):
             EffectQueue().put([effect, zone])
         EffectQueue().join()
+
+    def siren_effect_for(args = {}):
+        name = args.get("name")
+        attributes = args.get("attributes")
+        Effect(name=name, attributes=attributes)

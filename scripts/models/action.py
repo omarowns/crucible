@@ -1,5 +1,5 @@
 from models.repositories import ActionRepository
-from models.effect import Effect
+from factories import EffectFactory
 
 class Action():
     def __new__(cls):
@@ -8,7 +8,7 @@ class Action():
     def __init__(self, id=None, name="", effects=[]):
         self.id = id
         self.name = name
-        self.effects = [Effect(**effect) for effect in effects]
+        self.effects = [EffectFactory.build(**effect) for effect in effects]
 
     @classmethod
     def find_by(cls, key, value):
