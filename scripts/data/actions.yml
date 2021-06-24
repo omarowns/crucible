@@ -1,0 +1,18 @@
+actions:
+  - id: :police_siren
+    name: Police Siren
+    description: Red and blue flashing like police sirens
+    sound:
+      file: /soundbank/police_siren_01.wav
+      length: 3000 # in ms
+    effects:
+      - name: SirenAnimation
+        arguments:
+          siren_one:
+            name: StaticAnimation
+            arguments:
+              color_args: [255,0,0]
+          siren_two:
+            name: StaticAnimation
+            arguments:
+              color_args: [0,0,255]
