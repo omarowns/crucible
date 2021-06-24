@@ -11,8 +11,8 @@ class SirenAnimation(StaticAnimation):
     def __init__(self, args={}):
         super().__init__(args=args)
         
-        self.first_zone = Zone(start=self.range[0], end=(self.range[-1]/2))
-        self.last_zone = Zone(start=(self.range[-1]/2), end=self.range[-1])
+        self.first_zone = Zone(start=self.range[0], end=int(self.range[-1]/2))
+        self.last_zone = Zone(start=int(self.range[-1]/2), end=self.range[-1])
 
         self.siren_one_effect = self.siren_effect_for(args.get("siren_one"))
         self.siren_two_effect = self.siren_effect_for(args.get("siren_two"))

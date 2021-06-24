@@ -4,8 +4,8 @@ class Zone():
     def __init__(self, id=None, name="", start=0, end=0):
         self.id = id
         self.name = name
-        self.start = start
-        self.end = end
+        self.start = int(start)
+        self.end = int(end)
         self.range = [self.start, self.end]
 
     @classmethod
