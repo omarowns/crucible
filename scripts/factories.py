@@ -17,7 +17,7 @@ class AnimationFactory():
         self.animation.render()
 
     def animation_class(self, renderer_class):
-        if renderer_class in [class for (class, _) in implementations(animations.basics)]:
+        if renderer_class in [klass for (klass, _) in implementations(animations.basics)]:
             getattr(import_module('animations.basics'), renderer_class)
-        if renderer_class in [class for (class, _) in implementations(animations.compounds)]:
+        if renderer_class in [klass for (klass, _) in implementations(animations.compounds)]:
             getattr(import_module('animations.compounds'), renderer_class)
