@@ -23,6 +23,12 @@ class ColorableAnimation(Animation):
         super().__init__(args = args)
         self.color = Color(*args.get("color_args", [0,0,0]))
 
+class DualColorableAnimation(Animation):
+    def __init__(self, args = {}):
+        super().__init__(args = args)
+        self.color_one = Color(*args.get("color_one_args", [0,0,0]))
+        self.color_two = Color(*args.get("color_two_args", [0,0,0]))
+
 class EndWaitableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)
@@ -37,6 +43,11 @@ class IntervalableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)
         self.intervals = args.get("intervals", 5)
+
+class StepableAnimation(Animation):
+    def __init__(self, args = {}):
+        super().__init__(args = args)
+        self.steps = args.get("steps", 10)
 
 class TimeoutableAnimation(Animation):
     def __init__(self, args = {}):

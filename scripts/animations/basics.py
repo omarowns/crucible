@@ -12,3 +12,25 @@ class StaticAnimation(SegmentableAnimation, ColorableAnimation, EndWaitableAnima
             self.strip.setPixelColor(i, self.color)
         self.strip.show()
         time.sleep(self.end_wait_ms/1000.0)
+
+class BlinkAnimation(SegmentableAnimation, StepableAnimation, WaitableAnimation):
+    def render(self):
+        original_brightness = self.strip.getBrightness()
+        brightness = original_brightness.dup
+        while brightness >= 0:
+            brightness -= self.steps
+            self.strip.setbrightness(brightness)
+            self.strip.show()
+            time.sleep(self.wait_ms/1000.0)
+        while brightness <= original_brightness:
+            brightness += self.steps
+            self.strip.setbrightness(brightness)
+            self.strip.show()
+            time.sleep(self.wait_ms/1000.0)
+
+class ColorWipe(SegmentableAnimation, ColorableAnimation, WaitableAnimation):
+    def render(self):
+        for i in range(*self.range):
+            self.strip.setPixelColor(i, self.color)
+            self.strip.show()
+            time.sleep(self.wait_ms/1000.0)

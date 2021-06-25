@@ -1,13 +1,6 @@
 import time
 from rpi_ws281x import Color
 
-class ColorWipe(SegmentableAnimation, ColorableAnimation, WaitableAnimation):
-    def render(self):
-        for i in range(self.led_start, self.led_end):
-            self.strip.setPixelColor(i, self.color)
-            self.strip.show()
-            time.sleep(self.wait_ms/1000.0)
-
 class TheaterChase():
     @classmethod
     def call(cls, strip, led_start, led_end, color_args, wait_ms=50, iterations=10):

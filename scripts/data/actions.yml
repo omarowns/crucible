@@ -24,3 +24,24 @@ actions:
   name: Timed Police Siren
   description: Red and blue flashing like police sirens, last T time
   time: 10000
+- &test
+  id: test
+  name: Test
+  description: An animation test
+  loop: 2
+  effects:
+    - name: StaticAnimation
+      arguments:
+        color_args: [155, 255, 155]
+    - name: BlinkAnimation
+      arguments:
+        steps: 50
+    - name: ColorWipe
+      arguments:
+        color_args: [155, 155, 255]
+    - name: ColorWipe
+      arguments:
+        color_args: [255, 155, 155]
+    - name: ColorWipe
+      arguments:
+        color_args: [155, 255, 155]
