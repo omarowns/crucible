@@ -22,6 +22,7 @@ class BlinkAnimation(SegmentableAnimation, StepableAnimation, WaitableAnimation)
             self.strip.show()
             brightness -= self.steps
             time.sleep(self.wait_ms/1000.0)
+        brightness = 0
         while brightness <= original_brightness:
             self.strip.setBrightness(brightness)
             self.strip.show()
