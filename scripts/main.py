@@ -11,7 +11,7 @@ from queues import EffectQueue, SubEffectQueue
 def mainEffectWorker():
     while True:
         effect, zone = EffectQueue().get()
-        if zone != None:
+        if effect.zone == None:
             effect.zone = zone
 
         effect.stage()

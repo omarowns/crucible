@@ -50,6 +50,7 @@ class Animatable():
 class ZonableAnimation(Animatable):
     def __init__(self, arguments={}):
         super().__init__()
+        self.zone = None
         if arguments.get("zone"):
             zone = arguments.get("zone")
             self.zone = Zone.find_by("id", zone) or Zone.find_by("name", zone)
