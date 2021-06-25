@@ -10,6 +10,3 @@ class Effect(RenderableAnimation):
         self.name = name
         self.arguments = arguments
         self.animation_for(self.name)
-
-    def stage(self):
-        return super().stage(name=self.name, arguments=self.arguments)
