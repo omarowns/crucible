@@ -36,7 +36,7 @@ class EndWaitableAnimation(Animation):
 
     def endWait(self):
         if self.end_wait_ms == None:
-            pass
+            return
         time.sleep(self.end_wait_ms/1000.0)
 
 class WaitableAnimation(Animation):
