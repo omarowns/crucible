@@ -16,7 +16,7 @@ class StaticAnimation(SegmentableAnimation, ColorableAnimation, EndWaitableAnima
 class BlinkAnimation(SegmentableAnimation, StepableAnimation, WaitableAnimation):
     def render(self):
         original_brightness = self.strip.getBrightness()
-        brightness = original_brightness.dup
+        brightness = original_brightness
         while brightness >= 0:
             brightness -= self.steps
             self.strip.setbrightness(brightness)

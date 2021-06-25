@@ -32,16 +32,16 @@ actions:
   effects:
     - name: StaticAnimation
       arguments:
-        color_args: [155, 255, 155]
+        color_args: [85, 200, 85]
     - name: BlinkAnimation
       arguments:
         steps: 50
     - name: ColorWipe
       arguments:
-        color_args: [155, 155, 255]
+        color_args: [85, 85, 200]
     - name: ColorWipe
       arguments:
-        color_args: [255, 155, 155]
+        color_args: [200, 85, 85]
     - name: ColorWipe
       arguments:
-        color_args: [155, 255, 155]
+        color_args: [85, 200, 85]
