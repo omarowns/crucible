@@ -14,7 +14,6 @@ def mainEffectWorker():
         if effect.zone == None:
             effect.zone = zone
 
-        effect.stage()
         effect.render()
         EffectQueue().task_done()
 
@@ -24,7 +23,6 @@ def subEffectWorker():
         if zone != None:
             effect.zone = zone
 
-        effect.stage()
         effect.render()
         SubEffectQueue().task_done()
 

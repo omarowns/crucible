@@ -85,10 +85,10 @@ actions:
   effects:
     - name: ParallelAnimation
       arguments:
-        zone: 1
         effects:
           - name: SirenAnimation
             arguments:
+              zone: 2
               siren_one:
                 name: StaticAnimation
                 arguments:
@@ -99,6 +99,7 @@ actions:
                   color_args: [0,0,255]
           - name: SirenAnimation
             arguments:
+              zone: 3
               siren_one:
                 name: StaticAnimation
                 arguments:

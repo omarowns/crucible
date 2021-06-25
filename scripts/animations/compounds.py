@@ -45,6 +45,5 @@ class ParallelAnimation(SegmentableAnimation):
     def _renderAsync(self):
         while self.effect_attrs != None:
             effect = Effect(**self.effect_attrs)
-            effect.stage()
             effect.render()
             self.effect_attrs = None

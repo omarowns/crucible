@@ -47,15 +47,7 @@ class Animatable():
         except:
             self.animation_classes = []
 
-class ZonableAnimation(Animatable):
-    def __init__(self, arguments={}):
-        super().__init__()
-        self.zone = None
-        if arguments.get("zone"):
-            zone = arguments.get("zone")
-            self.zone = Zone.find_by("id", zone) or Zone.find_by("name", zone)
-
-class StageableAnimation(ZonableAnimation):
+class StageableAnimation(Animatable):
     def __init__(self, arguments={}):
         super().__init__(arguments=arguments)
 
@@ -71,5 +63,6 @@ class RenderableAnimation(StageableAnimation):
         super().__init__(arguments=arguments)
 
     def render(self):
+        self.stage()
         if bool(self.animation) and bool(self.zone):
             self.animation.render()

@@ -1,3 +1,5 @@
+from inspect import getmembers as implementations
+from importlib import import_module
 import time
 from rpi_ws281x import Color
 from strip import Strip
@@ -11,7 +13,16 @@ class Animation(Stripable):
     def __init__(self, args = None):
         super().__init__()
 
-class SegmentableAnimation(Animation):
+class ZonableAnimation(Animation):
+    def __init__(self, args={}):
+        super().__init__(args=args)
+        self.zone = args.get("zone")
+        if self.zone != None:
+            import_module('models.zones')
+            zone_class = getattr(import_module('models.zones'), 'Zone')
+            self.zone = zone_class.find_by("id", self.zone) or zone_class.find_by("name", self.zone)
+
+class SegmentableAnimation(ZonableAnimation):
     def __init__(self, args = {}):
         super().__init__(args = args)
         self.led_start = args.get("led_start", 0)
