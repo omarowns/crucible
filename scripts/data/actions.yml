@@ -1,6 +1,6 @@
 actions:
 - &police-siren-effect
-  id: police_siren
+  id: police-siren-effect
   name: Police Siren
   description: Red and blue flashing like police sirens
   loop: 10
@@ -19,14 +19,14 @@ actions:
           arguments:
             color_args: [0,0,255]
 - &police-siren-effect-timed
-  <<: *police-siren-effect
+  <<: *police-siren-effect-timed
   id: police_siren_timed
   name: Timed Police Siren
   description: Red and blue flashing like police sirens, last T time
   time: 10000
-- &test
-  id: test
-  name: Test
+- &multiple-effect-queue
+  id: multiple-effect-queue
+  name: Testing effects in queue
   description: An animation test
   loop: 2
   effects:
@@ -48,8 +48,8 @@ actions:
       arguments:
         color_args: [85, 200, 85]
     - name: ClearAnimation
-- &test-zones
-  id: test-zones
+- &multiple-effect-by-zone
+  id: multiple-effect-by-zone
   name: Test Zones
   description: A Zoned Test
   loop: 10
@@ -80,7 +80,7 @@ actions:
 - &parallel-effects-test
   id: parallel-effects-test
   name: Parallel Effects Test
-  description: Testing two different animations running in parallel
+  description: Testing two different animations running in parallel. Should prove that SirenAnimation works on two zones simultaneously.
   time: 10000
   effects:
     - name: ParallelAnimation
