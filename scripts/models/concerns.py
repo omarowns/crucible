@@ -47,33 +47,28 @@ class Animatable():
         except:
             self.animation_classes = []
 
-class StageableAnimation(Animatable):
-    def __init__(self):
-        super().__init__()
-        self.staged = False
-
-    def stage(self, zone=Zone, name={}, arguments={}):
-        self.stage_animation_with_zone(zone, name, arguments)
-        self.staged = True and bool(self.animation)
-
-    def stage_animation_with_zone(self, zone=Zone, name=None, arguments = {}):
-        if self.animation_class == None:
-            if not self.load_animation_class(name):
-                return
-
-        self.animation = self.animation_class(args={ "range": zone.range, **arguments})
-
-class RenderableAnimation(StageableAnimation):
-    def __init__(self, arguments={}):
-        super().__init__()
-
-    def render(self):
-        if self.staged:
-            self.animation.render()
-
 class ZonableAnimation(Animatable):
     def __init__(self, arguments={}):
         super().__init__()
         if hasattr(arguments, "zone"):
             zone = arguments.get("zone")
             self.zone = Zone.find_by("id", zone) or Zone.find_by("name", zone)
+
+class StageableAnimation(ZonableAnimation):
+    def __init__(self, arguments={}):
+        super().__init__(arguments=arguments)
+
+    def stage(self):
+        if self.animation_class == None:
+            if not self.load_animation_class(self.name):
+                return
+
+        self.animation = self.animation_class(args={ "range": self.zone.range, **self.arguments})
+
+class RenderableAnimation(StageableAnimation):
+    def __init__(self, arguments={}):
+        super().__init__(arguments = {})
+
+    def render(self):
+        if bool(self.animation) and bool(self.zone):
+            self.animation.render()

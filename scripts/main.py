@@ -11,14 +11,20 @@ from queues import EffectQueue, SubEffectQueue
 def mainEffectWorker():
     while True:
         effect, zone = EffectQueue().get()
-        effect.stage(zone=zone)
+        if zone != None:
+            effect.zone = zone
+
+        effect.stage()
         effect.render()
         EffectQueue().task_done()
 
 def subEffectWorker():
     while True:
         effect, zone = SubEffectQueue().get()
-        effect.stage(zone=zone)
+        if zone != None:
+            effect.zone = zone
+
+        effect.stage()
         effect.render()
         SubEffectQueue().task_done()
 

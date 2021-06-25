@@ -1,9 +1,9 @@
 from models.zone import Zone
-from models.concerns import RenderableAnimation, ZonableAnimation
+from models.concerns import RenderableAnimation
 # import animations.basics
 # import animations.compounds
 
-class Effect(RenderableAnimation, ZonableAnimation):
+class Effect(RenderableAnimation):
     def __init__(self, name=None, arguments={}):
         super().__init__(arguments=arguments)
         self.id = id
@@ -11,5 +11,5 @@ class Effect(RenderableAnimation, ZonableAnimation):
         self.arguments = arguments
         self.animation_for(self.name)
 
-    def stage(self, zone=Zone):
-        return super().stage(zone=zone, name=self.name, arguments=self.arguments)
+    def stage(self):
+        return super().stage(name=self.name, arguments=self.arguments)
