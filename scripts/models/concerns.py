@@ -56,7 +56,8 @@ class StageableAnimation(Animatable):
         self.animation = self.animation_class(args={ "range": self.zone.range, **self.arguments})
 
 class RenderableAnimation(StageableAnimation):
-    def render(self):
+    def render(self, zone=None):
         self.stage()
+        self.zone = zone or self.zone
         if bool(self.animation) and bool(self.zone):
             self.animation.render()
