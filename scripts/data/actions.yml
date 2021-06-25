@@ -24,4 +24,3 @@ actions:
   name: Timed Police Siren
   description: Red and blue flashing like police sirens, last T time
   time: 10000
-  loop: False
