@@ -32,7 +32,12 @@ class DualColorableAnimation(Animation):
 class EndWaitableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)
-        self.end_wait_ms = args.get("end_wait_ms", 500)
+        self.end_wait_ms = args.get("end_wait_ms", None)
+
+    def endWait(self):
+        if self.end_wait_ms == None:
+            pass
+        time.sleep(self.end_wait_ms/1000.0)
 
 class WaitableAnimation(Animation):
     def __init__(self, args = {}):
@@ -53,6 +58,9 @@ class TimeoutableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)
         self.timeout_ms = args.get("timeout_ms", 5000)
+
+    def timeout(self):
+        time.sleep(self.timeout_ms)
 
 class ClearableAnimation(SegmentableAnimation):
     def clear(self):

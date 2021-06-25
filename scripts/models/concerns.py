@@ -64,9 +64,16 @@ class StageableAnimation(Animatable):
         self.animation = self.animation_class(args={ "range": zone.range, **arguments})
 
 class RenderableAnimation(StageableAnimation):
-    def __init__(self):
-        super().__init__()
+    # def __init__(self, arguments={}):
+    #     super().__init__()
 
     def render(self):
         if self.staged:
             self.animation.render()
+
+class ZonableAnimation(Animatable):
+    def __init__(self, arguments={}):
+        super().__init__()
+        if hasattr(arguments, "zone"):
+            zone = arguments.get("zone")
+            self.zone = Zone.find_by("id", zone) or Zone.find_by("name", zone)

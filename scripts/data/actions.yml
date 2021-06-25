@@ -48,3 +48,32 @@ actions:
       arguments:
         color_args: [85, 200, 85]
     - name: ClearAnimation
+- &test-zones
+  id: test-zones
+  name: Test Zones
+  description: A Zoned Test
+  loop: 10
+  effects:
+    - name: StaticAnimation
+      arguments:
+        color_args: [200, 35, 35]
+        zone: 2
+    - name: StaticAnimation
+      arguments:
+        color_args: [35, 35, 200]
+        zone: 3
+    - name: FreezeAnimation
+      arguments:
+        timeout_ms: 1000
+    - name: StaticAnimation
+      arguments:
+        color_args: [35, 35, 200]
+        zone: 2
+    - name: StaticAnimation
+      arguments:
+        color_args: [200, 35, 35]
+        zone: 3
+    - name: FreezeAnimation
+      arguments:
+        timeout_ms: 1000
+    - name: ClearAnimation

@@ -11,7 +11,7 @@ class StaticAnimation(SegmentableAnimation, ColorableAnimation, EndWaitableAnima
         for i in range(*self.range):
             self.strip.setPixelColor(i, self.color)
         self.strip.show()
-        time.sleep(self.end_wait_ms/1000.0)
+        self.endWait()
 
 class BlinkAnimation(SegmentableAnimation, StepableAnimation, WaitableAnimation):
     def render(self):
@@ -35,3 +35,7 @@ class ColorWipeAnimation(SegmentableAnimation, ColorableAnimation, WaitableAnima
             self.strip.setPixelColor(i, self.color)
             self.strip.show()
             time.sleep(self.wait_ms/1000.0)
+
+class FreezeAnimation(TimeoutableAnimation):
+    def render(self):
+        self.timeout()
