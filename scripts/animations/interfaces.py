@@ -60,7 +60,7 @@ class TimeoutableAnimation(Animation):
         self.timeout_ms = args.get("timeout_ms", 5000)
 
     def timeout(self):
-        time.sleep(self.timeout_ms)
+        time.sleep(self.timeout_ms/1000.0)
 
 class ClearableAnimation(SegmentableAnimation):
     def clear(self):
