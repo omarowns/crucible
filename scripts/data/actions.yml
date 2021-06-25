@@ -85,6 +85,7 @@ actions:
   effects:
     - name: ParallelAnimation
       arguments:
+        zone: 1
         effects:
           - name: SirenAnimation
             arguments:
