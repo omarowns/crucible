@@ -33,6 +33,7 @@ actions:
     - name: StaticAnimation
       arguments:
         color_args: [85, 200, 85]
+        end_wait_ms: 1500
     - name: BlinkAnimation
       arguments:
         steps: 50

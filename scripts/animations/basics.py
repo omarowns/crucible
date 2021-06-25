@@ -18,14 +18,14 @@ class BlinkAnimation(SegmentableAnimation, StepableAnimation, WaitableAnimation)
         original_brightness = self.strip.getBrightness()
         brightness = original_brightness
         while brightness >= 0:
-            brightness -= self.steps
             self.strip.setBrightness(brightness)
             self.strip.show()
+            brightness -= self.steps
             time.sleep(self.wait_ms/1000.0)
         while brightness <= original_brightness:
-            brightness += self.steps
             self.strip.setBrightness(brightness)
             self.strip.show()
+            brightness += self.steps
             time.sleep(self.wait_ms/1000.0)
 
 class ColorWipe(SegmentableAnimation, ColorableAnimation, WaitableAnimation):
