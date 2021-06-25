@@ -67,7 +67,7 @@ class StageableAnimation(ZonableAnimation):
 
 class RenderableAnimation(StageableAnimation):
     def __init__(self, arguments={}):
-        super().__init__(arguments = {})
+        super().__init__(arguments=arguments)
 
     def render(self):
         if bool(self.animation) and bool(self.zone):
