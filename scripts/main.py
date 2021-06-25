@@ -62,9 +62,6 @@ if __name__ == '__main__':
         elif action.is_timeable():
             threading.Thread(target=actionWorker, daemon=True).start()
             sleep(action.time)
-        elif action.is_parallelizable():
-            for effect_item in action.effects:
-                EffectQueue().put([Effect(**effect_item), zone])
         else:
             for effect_item in action.effects:
                 EffectQueue().put([Effect(**effect_item), zone])
