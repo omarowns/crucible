@@ -36,13 +36,15 @@ actions:
         end_wait_ms: 1500
     - name: BlinkAnimation
       arguments:
-        steps: 50
-    - name: ColorWipe
+        steps: 100
+        wait_ms: 10
+    - name: ColorWipeAnimation
       arguments:
         color_args: [85, 85, 200]
-    - name: ColorWipe
+    - name: ColorWipeAnimation
       arguments:
         color_args: [200, 85, 85]
-    - name: ColorWipe
+    - name: ColorWipeAnimation
       arguments:
         color_args: [85, 200, 85]
+    - name: ClearAnimation

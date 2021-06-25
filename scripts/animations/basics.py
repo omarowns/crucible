@@ -29,7 +29,7 @@ class BlinkAnimation(SegmentableAnimation, StepableAnimation, WaitableAnimation)
             brightness += self.steps
             time.sleep(self.wait_ms/1000.0)
 
-class ColorWipe(SegmentableAnimation, ColorableAnimation, WaitableAnimation):
+class ColorWipeAnimation(SegmentableAnimation, ColorableAnimation, WaitableAnimation):
     def render(self):
         for i in range(*self.range):
             self.strip.setPixelColor(i, self.color)
