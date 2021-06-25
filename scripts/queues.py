@@ -15,3 +15,7 @@ class SubEffectQueue():
         if cls._queue is None:
             cls._queue = queue.Queue()
         return cls._queue
+
+class ParallelEffectsQueue():
+    def __init__(self) -> None:
+        return queue.Queue()

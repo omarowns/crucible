@@ -1,3 +1,4 @@
+from threading import Thread
 import time
 from animations.interfaces import SegmentableAnimation
 
@@ -27,3 +28,23 @@ class SirenAnimation(SegmentableAnimation):
 
     def siren_effect_for(self, arguments) -> Effect:
         return Effect(name=arguments.get("name"), arguments=arguments.get("arguments"))
+
+class ParallelAnimation(SegmentableAnimation):
+    def __init__(self, args):
+        super().__init__(args=args)
+        self.effects = args.get("effects")
+        self.effects_attrs = None
+
+    def render(self):
+        for effect_attrs in self.effects:
+            self.effects_attrs = effect_attrs
+            thread = Thread(target=self._renderAsync)
+            thread.start()
+            thread.join()
+
+    def _renderAsync(self):
+        while self.effects_attrs != None:
+            effect = Effect(**self.effect_attrs)
+            effect.stage()
+            effect.render()
+            self.effects_attrs = None

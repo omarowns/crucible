@@ -77,3 +77,22 @@ actions:
       arguments:
         timeout_ms: 1000
     - name: ClearAnimation
+- &parallel-effects-test
+  id: parallel-effects-test
+  name: Parallel Effects Test
+  description: Testing two different animations running in parallel
+  effects:
+    - name: ParallelAnimation
+      arguments:
+        effects:
+          - name: StaticAnimation
+            arguments:
+              color_args: [200,0,0]
+              zone: 2
+              end_time_ms: 500
+          - name: StaticAnimation
+            arguments:
+              color_args: [0,0,200]
+              zone: 3
+              end_time_ms: 500
+        
