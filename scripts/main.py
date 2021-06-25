@@ -2,6 +2,7 @@
 
 import argparse
 import threading
+from time import sleep, time
 from models.zone import Zone
 from models.action import Action
 from models.effect import Effect
@@ -20,6 +21,12 @@ def subEffectWorker():
         effect.stage(zone=zone)
         effect.render()
         SubEffectQueue().task_done()
+
+def actionWorker():
+    while True:
+        for effect_item in action.effects:
+            EffectQueue().put([Effect(**effect_item), zone])
+        EffectQueue().join()
 
 # Main program logic follows:
 if __name__ == '__main__':
@@ -45,7 +52,14 @@ if __name__ == '__main__':
             for _ in range(0, action.loop_iterations()):
                 for effect_item in action.effects:
                     EffectQueue().put([Effect(**effect_item), zone])
-                EffectQueue().join()
+            EffectQueue().join()
+        elif action.is_timeable():
+            threading.Thread(target=actionWorker, daemon=True).start()
+            sleep(action.time)
+        else:
+            for effect_item in action.effects:
+                EffectQueue().put([Effect(**effect_item), zone])
+            EffectQueue().join()
 
     except KeyboardInterrupt:
         if program_arguments.clear:

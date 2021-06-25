@@ -1,11 +1,12 @@
 from models.repositories import ActionRepository
 
 class Action():
-    def __init__(self, id=None, name="", description="", loop=None, sound=None, effects=[]):
+    def __init__(self, id=None, name="", description="", loop=None, time=None, sound=None, effects=[]):
         self.id = id
         self.name = name
         self.description = description
         self.loop = loop
+        self.time = time
         self.sound = sound
         self.effects = effects
 
@@ -14,6 +15,9 @@ class Action():
 
     def loop_iterations(self) -> int:
         return self.loop
+
+    def is_timeable(self) -> bool:
+        return self.time != None
 
     @classmethod
     def find_by(cls, key, value):
