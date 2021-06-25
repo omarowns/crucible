@@ -48,9 +48,6 @@ class Animatable():
             self.animation_classes = []
 
 class StageableAnimation(Animatable):
-    def __init__(self, arguments={}):
-        super().__init__(arguments=arguments)
-
     def stage(self):
         if self.animation_class == None:
             if not self.load_animation_class(self.name):
@@ -59,9 +56,6 @@ class StageableAnimation(Animatable):
         self.animation = self.animation_class(args={ "range": self.zone.range, **self.arguments})
 
 class RenderableAnimation(StageableAnimation):
-    def __init__(self, arguments={}):
-        super().__init__(arguments=arguments)
-
     def render(self):
         self.stage()
         if bool(self.animation) and bool(self.zone):
