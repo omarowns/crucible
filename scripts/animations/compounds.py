@@ -54,5 +54,6 @@ class LoopAnimation(RangeableAnimation, LoopableAnimation, MultiEffectableAnimat
     def render(self):
         for i in range(self.loops):
             for effect_attrs in self.effects:
+                import pdb; pdb.set_trace()
                 SubEffectQueue().put([Effect(effect_attrs), None])
             SubEffectQueue().join()
