@@ -14,10 +14,12 @@ actions:
           name: StaticAnimation
           arguments:
             color_args: [255,0,0]
+            end_time_ms: 500
         siren_two:
           name: StaticAnimation
           arguments:
             color_args: [0,0,255]
+            end_time_ms: 500
 - &police-siren-effect-timed
   <<: *police-siren-effect-timed
   id: police_siren_timed
