@@ -115,6 +115,7 @@ actions:
   name: Mix Strategy Effects
   description: Testing different strategies to create a solid animation of sorts.
   effects:
+    - name: ClearAnimation
     - name: LoopAnimation
       arguments:
         loops: 3
