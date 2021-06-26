@@ -94,10 +94,10 @@ class ClearableAnimation(RangeableAnimation):
 
 class LoopableAnimation():
     def __init__(self, args = {}):
-        super().__init__()
+        super().__init__(args=args)
         self.loops = int(args.get("loops"))
 
 class MultiEffectableAnimation():
     def __init__(self, args = {}):
-        super().__init__()
+        super().__init__(args=args)
         self.effects = args.get("effects")
