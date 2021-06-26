@@ -33,17 +33,17 @@ class SirenAnimation(RangeableAnimation):
 class ParallelAnimation(RangeableAnimation, MultiEffectableAnimation):
     def __init__(self, args):
         super().__init__(args=args)
-        self.effect_attrs = None
+        self.effect_args = None
 
     def render(self):
-        for effect_attrs in self.effects:
-            thread = Thread(target=self._renderAsync, kwargs=effect_attrs)
+        for effect_args in self.effects:
+            thread = Thread(target=self._renderAsync, kwargs={"args":effect_args})
             thread.start()
             thread.join()
 
-    def _renderAsync(self, name=None, arguments=None):
-        while name != None and arguments != None:
-            effect = Effect(name=name, arguments=arguments)
+    def _renderAsync(self, arguments={}):
+        while arguments.get("name") and arguments.get("arguments"):
+            effect = Effect(arguments)
             effect.render()
 
 class LoopAnimation(LoopableAnimation, MultiEffectableAnimation):
@@ -52,6 +52,6 @@ class LoopAnimation(LoopableAnimation, MultiEffectableAnimation):
 
     def render(self):
         for i in range(self.loops):
-            for effect_attrs in self.effects:
-                SubEffectQueue().put([Effect(**effect_attrs), None])
+            for effect_args in self.effects:
+                SubEffectQueue().put([Effect(**effect_args), None])
         SubEffectQueue().join()
