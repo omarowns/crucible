@@ -47,13 +47,12 @@ class ParallelAnimation(RangeableAnimation, MultiEffectableAnimation):
             effect.render()
             self.effect_attrs = None
 
-class LoopAnimation(RangeableAnimation, LoopableAnimation, MultiEffectableAnimation):
+class LoopAnimation(LoopableAnimation, MultiEffectableAnimation):
     def __init__(self, args):
         super().__init__(args=args)
 
     def render(self):
         for i in range(self.loops):
             for effect_attrs in self.effects:
-                import pdb; pdb.set_trace()
                 SubEffectQueue().put([Effect(effect_attrs), None])
-            SubEffectQueue().join()
+        SubEffectQueue().join()

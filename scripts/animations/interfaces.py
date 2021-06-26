@@ -99,5 +99,5 @@ class LoopableAnimation(Animation):
 
 class MultiEffectableAnimation(Animation):
     def __init__(self, args = {}):
-        super().__init__()
+        super().__init__(args=args)
         self.effects = args.get("effects")
