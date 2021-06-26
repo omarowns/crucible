@@ -37,6 +37,10 @@ class ReversableAnimation(RangeableAnimation):
         super().__init__()
         self.range.reverse()
 
+    def render(self):
+        import pdb; pdb.set_trace()
+        super()
+
 class ColorableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)
@@ -86,7 +90,7 @@ class TimeoutableAnimation(Animation):
 
 class ClearableAnimation(RangeableAnimation):
     def clear(self):
-        for i in self.range:
+        for i in range(*self.range):
             self.strip.setPixelColor(i, Color(0,0,0))
         self.strip.show()
 
