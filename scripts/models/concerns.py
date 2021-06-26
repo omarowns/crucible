@@ -72,5 +72,5 @@ class HasZone():
         super().__init__()
         self.zone = None
         if arguments.get("zone_id"):
-            self.zone = Zone.find_by("id", arguments.get("zone_id")) or Zone.find_by("name", arguments.get("zone_id")) or
+            self.zone = Zone.find_by("id", arguments.get("zone_id")) or Zone.find_by("name", arguments.get("zone_id"))
         self.zone = self.zone or Zone.find_by("id", 1)
