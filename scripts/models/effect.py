@@ -3,7 +3,7 @@ from models.concerns import RenderableAnimation, HasZone
 # import animations.basics
 # import animations.compounds
 
-class Effect(RenderableAnimation, HasZone):
+class Effect(HasZone, RenderableAnimation):
     def __init__(self, name=None, arguments={}):
         super().__init__(arguments=arguments)
         self.id = id

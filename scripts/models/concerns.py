@@ -61,8 +61,9 @@ class RenderableAnimation(StageableAnimation):
         super().__init__()
 
     def render(self, zone=None):
-        self.zone = zone or self.zone
+        import pdb; pdb.set_trace()
         if bool(self.zone):
+            self.zone = zone or self.zone
             self.stage()
         if bool(self.animation):
             self.animation.render()
@@ -70,6 +71,7 @@ class RenderableAnimation(StageableAnimation):
 class HasZone():
     def __init__(self, arguments={}) -> None:
         super().__init__()
+        import pdb; pdb.set_trace()
         self.zone = None
         if arguments.get("zone_id"):
             self.zone = Zone.find_by("id", arguments.get("zone_id")) or Zone.find_by("name", arguments.get("zone_id"))

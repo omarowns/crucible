@@ -49,14 +49,14 @@ if __name__ == '__main__':
         if action.is_loopable():
             for _ in range(0, action.loop_iterations()):
                 for effect_item in action.effects:
-                    EffectQueue().put([Effect(**effect_item), zone])
+                    EffectQueue().put(Effect({zone: zone, **effect_item}))
             EffectQueue().join()
         elif action.is_timeable():
             threading.Thread(target=actionWorker, daemon=True).start()
             sleep(action.time)
         else:
             for effect_item in action.effects:
-                EffectQueue().put([Effect(**effect_item), zone])
+                EffectQueue().put(Effect({zone: zone, **effect_item}))
             EffectQueue().join()
 
     except KeyboardInterrupt:
