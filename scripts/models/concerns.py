@@ -1,5 +1,6 @@
 from inspect import getmembers as implementations
 from importlib import import_module
+from typing import DefaultDict
 from models.zone import Zone
 
 class Animatable():
@@ -56,8 +57,20 @@ class StageableAnimation(Animatable):
         self.animation = self.animation_class(args={ "zone": self.zone, **self.arguments})
 
 class RenderableAnimation(StageableAnimation):
+    def __init__(self, arguments={}):
+        super().__init__()
+
     def render(self, zone=None):
         self.zone = zone or self.zone
-        self.stage()
-        if bool(self.animation) and bool(self.zone):
+        if bool(self.zone):
+            self.stage()
+        if bool(self.animation):
             self.animation.render()
+
+class HasZone():
+    def __init__(self, arguments={}) -> None:
+        super().__init__()
+        self.zone = None
+        if arguments.get("zone_id"):
+            self.zone = Zone.find_by("id", arguments.get("zone_id")) or Zone.find_by("name", arguments.get("zone_id")) or
+        self.zone = self.zone or Zone.find_by("id", 1)

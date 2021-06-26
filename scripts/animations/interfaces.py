@@ -23,19 +23,14 @@ class ZonableAnimation(SegmentableAnimation):
     def __init__(self, args={}):
         super().__init__(args=args)
         self.zone = args.get("zone")
-        if self.zone == None:
-            import_module('models.zones')
-            zone_class = getattr(import_module('models.zones'), 'Zone')
-            self.zone = (
-                zone_class.find_by("id", args.get("zone_id")) or
-                zone_class.find_by("name", args.get("zone_id")) or
-                zone_class(start=self.led_start, end=self.led_end)
-            )
 
 class RangeableAnimation(ZonableAnimation):
     def __init__(self, args):
         super().__init__(args=args)
-        self.range = self.zone.range or args.get("range", [self.led_start, self.led_end])
+        if self.zone:
+            self.range = self.zone.range
+        else:
+            self.range = args.get("range", [self.led_start, self.led_end])
 
 class ColorableAnimation(Animation):
     def __init__(self, args = {}):
