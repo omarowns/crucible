@@ -5,13 +5,13 @@ from rpi_ws281x import Color
 from strip import Strip
 
 class Stripable():
-    def __init__(self):
-        super().__init__()
+    def __init__(self, args={}):
+        super().__init__(args=args)
         self.strip = Strip()
 
 class Animation(Stripable):
-    def __init__(self, args = None):
-        super().__init__()
+    def __init__(self, args={}):
+        super().__init__(args=args)
 
 class SegmentableAnimation(Animation):
     def __init__(self, args = {}):
@@ -25,7 +25,7 @@ class ZonableAnimation(SegmentableAnimation):
         self.zone = args.get("zone")
 
 class RangeableAnimation(ZonableAnimation):
-    def __init__(self, args):
+    def __init__(self, args={}):
         super().__init__(args=args)
         if self.zone:
             self.range = self.zone.range
