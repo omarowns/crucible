@@ -41,9 +41,9 @@ class ParallelAnimation(RangeableAnimation, MultiEffectableAnimation):
             thread.start()
             thread.join()
 
-    def _renderAsync(self, name=None, attributes=None):
-        while name != None and attributes != None:
-            effect = Effect(name=name, attributes=attributes)
+    def _renderAsync(self, name=None, arguments=None):
+        while name != None and arguments != None:
+            effect = Effect(name=name, arguments=arguments)
             effect.render()
 
 class LoopAnimation(LoopableAnimation, MultiEffectableAnimation):
