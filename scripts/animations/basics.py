@@ -6,12 +6,12 @@ class ClearAnimation(ClearableAnimation):
     def render(self):
         self.clear()
 
-class StaticAnimation(RangeableAnimation, ColorableAnimation, EndWaitableAnimation):
+class StaticAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimation):
     def render(self):
         for i in range(*self.range):
             self.strip.setPixelColor(i, self.color)
         self.strip.show()
-        self.endWait()
+        self.wait()
 
 class BlinkAnimation(RangeableAnimation, StepableAnimation, WaitableAnimation):
     def render(self):

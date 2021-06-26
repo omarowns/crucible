@@ -57,6 +57,9 @@ class WaitableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)
         self.wait_ms = args.get("wait_ms", 50)
+    
+    def wait(self):
+        time.sleep(self.wait_ms/1000.0)
 
 class IntervalableAnimation(Animation):
     def __init__(self, args = {}):
