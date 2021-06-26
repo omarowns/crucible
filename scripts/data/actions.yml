@@ -123,19 +123,19 @@ actions:
           - name: ColorWipeAnimation
             arguments:
               color_args: [255, 0, 0]
-              wait_ms: 250
+              wait_ms: 25
           - name: ColorWipeAnimation
             arguments:
               color_args: [0, 0, 0]
-              wait_ms: 250
+              wait_ms: 25
           - name: ReverseColorWipeAnimation
             arguments:
               color_args: [255, 0, 0]
-              wait_ms: 250
+              wait_ms: 25
           - name: ColorWipeAnimation
             arguments:
               color_args: [0, 0, 0]
-              wait_ms: 250
+              wait_ms: 25
     - name: ClearAnimation
     - name: StaticAnimation
       arguments:

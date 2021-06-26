@@ -31,6 +31,7 @@ class BlinkAnimation(RangeableAnimation, StepableAnimation, WaitableAnimation):
 
 class ColorWipeAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimation):
     def render(self):
+        import pdb; pdb.set_trace()
         for i in self.range:
             self.strip.setPixelColor(i, self.color)
             self.strip.show()
@@ -39,10 +40,6 @@ class ColorWipeAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimati
 class ReverseColorWipeAnimation(ColorWipeAnimation, ReversableAnimation):
     def __init__(self, args):
         super().__init__(args=args)
-
-    def render(self):
-        import pdb; pdb.set_trace()
-        super()
 
 class FreezeAnimation(TimeoutableAnimation):
     def render(self):
