@@ -28,19 +28,14 @@ class RangeableAnimation(ZonableAnimation):
     def __init__(self, args={}):
         super().__init__(args=args)
         if self.zone:
-            self.range = self.zone.range
+            self.range = [*range(*self.zone.range)]
         else:
-            self.range = args.get("range", [self.led_start, self.led_end])
+            self.range = [*range(*args.get("range", [self.led_start, self.led_end]))]
 
 class ReversableAnimation(RangeableAnimation):
     def __init__(self, args={}):
         super().__init__()
-        import pdb; pdb.set_trace()
-        self.range = [self.range[-1], self.range[0]]
-
-    def render(self):
-        import pdb; pdb.set_trace()
-        super()
+        self.range.reverse()
 
 class ColorableAnimation(Animation):
     def __init__(self, args = {}):
@@ -91,7 +86,7 @@ class TimeoutableAnimation(Animation):
 
 class ClearableAnimation(RangeableAnimation):
     def clear(self):
-        for i in range(*self.range):
+        for i in self.range:
             self.strip.setPixelColor(i, Color(0,0,0))
         self.strip.show()
 
