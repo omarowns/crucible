@@ -38,6 +38,7 @@ class ColorWipeAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimati
 
 class ReverseColorWipeAnimation(ColorWipeAnimation, ReversableAnimation):
     def __init__(self, args):
+        import pdb; pdb.set_trace()
         super().__init__({ "reverse": True, **args })
 
 class FreezeAnimation(TimeoutableAnimation):
