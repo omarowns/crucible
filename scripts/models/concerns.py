@@ -61,7 +61,6 @@ class RenderableAnimation(StageableAnimation):
         super().__init__()
 
     def render(self, zone=None):
-        import pdb; pdb.set_trace()
         if bool(self.zone):
             self.zone = zone or self.zone
             self.stage()
