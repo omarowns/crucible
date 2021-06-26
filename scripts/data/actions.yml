@@ -22,7 +22,7 @@ actions:
             wait_ms: 500
 - &police-siren-effect-timed
   <<: *police-siren-effect-timed
-  id: police_siren_timed
+  id: police-sire-effect-timed
   name: Timed Police Siren
   description: Red and blue flashing like police sirens, last T time
   time: 10000
