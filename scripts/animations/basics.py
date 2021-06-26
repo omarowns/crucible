@@ -36,6 +36,10 @@ class ColorWipeAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimati
             self.strip.show()
             time.sleep(self.wait_ms/1000.0)
 
+class ReverseColorWipeAnimation(ColorWipeAnimation, ReversableAnimation):
+    def __init__(self, args):
+        super().__init__({ "reverse": True, **args })
+
 class FreezeAnimation(TimeoutableAnimation):
     def render(self):
         self.timeout()

@@ -1,6 +1,6 @@
 from threading import Thread
 import time
-from animations.interfaces import RangeableAnimation
+from animations.interfaces import RangeableAnimation, LoopableAnimation, MultiEffectableAnimation
 
 from models.zone import Zone
 from models.effect import Effect
@@ -29,10 +29,9 @@ class SirenAnimation(RangeableAnimation):
     def siren_effect_for(self, arguments) -> Effect:
         return Effect(name=arguments.get("name"), arguments=arguments.get("arguments"))
 
-class ParallelAnimation(RangeableAnimation):
+class ParallelAnimation(RangeableAnimation, MultiEffectableAnimation):
     def __init__(self, args):
         super().__init__(args=args)
-        self.effects = args.get("effects")
         self.effect_attrs = None
 
     def render(self):
@@ -47,3 +46,13 @@ class ParallelAnimation(RangeableAnimation):
             effect = Effect(**self.effect_attrs)
             effect.render()
             self.effect_attrs = None
+
+class LoopAnimation(RangeableAnimation, LoopableAnimation, MultiEffectableAnimation):
+    def __init__(self, args):
+        super().__init__(args=args)
+
+    def render(self):
+        for i in self.loops:
+            for effect_attrs in self.effects:
+                SubEffectQueue().put(Effect(effect_attrs))
+            SubEffectQueue().join()

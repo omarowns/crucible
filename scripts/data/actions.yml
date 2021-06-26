@@ -110,4 +110,47 @@ actions:
                 name: StaticAnimation
                 arguments:
                   color_args: [255,0,0]
-        
+- &mix-strategy-effects-test
+  id: mix-strategy-effects-test
+  name: Mix Strategy Effects
+  description: Testing different strategies to create a solid animation of sorts.
+  effects:
+    - name: LoopAnimation
+      arguments:
+        loops: 3
+        effects:
+          - name: ColorWipeAnimation
+            arguments:
+              color_args: [255, 0, 0]
+              wait_ms: 250
+          - name: ColorWipeAnimation
+            arguments:
+              color_args: [0, 0, 0]
+              wait_ms: 250
+          - name: ReverseColorWipeAnimation
+            arguments:
+              color_args: [255, 0, 0]
+              wait_ms: 250
+          - name: ColorWipeAnimation
+            arguments:
+              color_args: [0, 0, 0]
+              wait_ms: 250
+    - name: ClearAnimation
+    - name: StaticAnimation
+      arguments:
+        color_args: [0, 255, 0]
+    - name: FreezeAnimation
+      arguments:
+        timeout_ms: 2000
+    - name: ClearAnimation
+    - name: ParallelAnimation
+      arguments:
+        effects:
+          - name: ColorWipeAnimation
+            arguments:
+              color_args: [255, 0, 0]
+              wait_ms: 250
+          - name: ReverseColorWipeAnimation
+            arguments:
+              color_args: [255, 0, 0]
+              wait_ms: 250

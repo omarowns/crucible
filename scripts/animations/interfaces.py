@@ -32,6 +32,13 @@ class RangeableAnimation(ZonableAnimation):
         else:
             self.range = args.get("range", [self.led_start, self.led_end])
 
+class ReversableAnimation(RangeableAnimation):
+    def __init__(self, args={}):
+        super().__init__()
+        self.reverse = bool(args.get("reverse"))
+        if self.reverse:
+            self.range = [self.range[-1], self.range[0]]
+
 class ColorableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)
@@ -84,3 +91,13 @@ class ClearableAnimation(RangeableAnimation):
         for i in range(*self.range):
             self.strip.setPixelColor(i, Color(0,0,0))
         self.strip.show()
+
+class LoopableAnimation():
+    def __init__(self, args = {}):
+        super().__init__()
+        self.loops = int(args.get("loops"))
+
+class MultiEffectableAnimation():
+    def __init__(self, args = {}):
+        super().__init__()
+        self.effects = args.get("effects")
