@@ -90,7 +90,7 @@ class TimeoutableAnimation(Animation):
 
 class ClearableAnimation(RangeableAnimation):
     def clear(self):
-        for i in range(*self.range):
+        for i in self.range:
             self.strip.setPixelColor(i, Color(0,0,0))
         self.strip.show()
 
