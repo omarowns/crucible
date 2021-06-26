@@ -149,11 +149,11 @@ actions:
         effects:
           - name: ColorWipeAnimation
             arguments:
-              zone: 2
+              zone_id: 2
               color_args: [255, 0, 0]
               wait_ms: 250
           - name: ReverseColorWipeAnimation
             arguments:
-              zone: 3
+              zone_id: 3
               color_args: [0, 0, 255]
               wait_ms: 250
