@@ -1,12 +1,12 @@
 from threading import Thread
 import time
-from animations.interfaces import SegmentableAnimation
+from animations.interfaces import RangeableAnimation
 
 from models.zone import Zone
 from models.effect import Effect
 from queues import SubEffectQueue
 
-class SirenAnimation(SegmentableAnimation):
+class SirenAnimation(RangeableAnimation):
 
     def __init__(self, args={}):
         super().__init__(args=args)
@@ -29,7 +29,7 @@ class SirenAnimation(SegmentableAnimation):
     def siren_effect_for(self, arguments) -> Effect:
         return Effect(name=arguments.get("name"), arguments=arguments.get("arguments"))
 
-class ParallelAnimation(SegmentableAnimation):
+class ParallelAnimation(RangeableAnimation):
     def __init__(self, args):
         super().__init__(args=args)
         self.effects = args.get("effects")

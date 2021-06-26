@@ -57,22 +57,22 @@ actions:
     - name: StaticAnimation
       arguments:
         color_args: [200, 35, 35]
-        zone: 2
+        zone_id: 2
     - name: StaticAnimation
       arguments:
         color_args: [35, 35, 200]
-        zone: 3
+        zone_id: 3
     - name: FreezeAnimation
       arguments:
         timeout_ms: 1000
     - name: StaticAnimation
       arguments:
         color_args: [35, 35, 200]
-        zone: 2
+        zone_id: 2
     - name: StaticAnimation
       arguments:
         color_args: [200, 35, 35]
-        zone: 3
+        zone_id: 3
     - name: FreezeAnimation
       arguments:
         timeout_ms: 1000
@@ -88,7 +88,7 @@ actions:
         effects:
           - name: SirenAnimation
             arguments:
-              zone: 2
+              zone_id: 2
               siren_one:
                 name: StaticAnimation
                 arguments:
@@ -99,7 +99,7 @@ actions:
                   color_args: [0,0,255]
           - name: SirenAnimation
             arguments:
-              zone: 3
+              zone_id: 3
               siren_one:
                 name: StaticAnimation
                 arguments:
