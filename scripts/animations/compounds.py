@@ -54,5 +54,5 @@ class LoopAnimation(RangeableAnimation, LoopableAnimation, MultiEffectableAnimat
     def render(self):
         for i in range(self.loops):
             for effect_attrs in self.effects:
-                SubEffectQueue().put(Effect(effect_attrs))
+                SubEffectQueue().put([Effect(effect_attrs), None])
             SubEffectQueue().join()
