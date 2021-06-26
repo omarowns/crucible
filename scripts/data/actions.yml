@@ -153,5 +153,5 @@ actions:
               wait_ms: 250
           - name: ReverseColorWipeAnimation
             arguments:
-              color_args: [255, 0, 0]
+              color_args: [0, 0, 255]
               wait_ms: 250

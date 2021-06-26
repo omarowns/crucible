@@ -35,9 +35,7 @@ class RangeableAnimation(ZonableAnimation):
 class ReversableAnimation(RangeableAnimation):
     def __init__(self, args={}):
         super().__init__()
-        self.reverse = bool(args.get("reverse"))
-        if self.reverse:
-            self.range = [self.range[-1], self.range[0]]
+        self.range = [self.range[-1], self.range[0]]
 
 class ColorableAnimation(Animation):
     def __init__(self, args = {}):
