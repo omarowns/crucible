@@ -44,7 +44,6 @@ class ParallelAnimation(RangeableAnimation, MultiEffectableAnimation):
 
     def _renderAsync(self):
         while self.effect_attrs != None:
-            import pdb; pdb.set_trace()
             effect = Effect(**self.effect_attrs)
             effect.render()
             self.effect_attrs = None
