@@ -37,10 +37,6 @@ class ReversableAnimation(RangeableAnimation):
         super().__init__()
         self.range.reverse()
 
-    def render(self):
-        import pdb; pdb.set_trace()
-        super()
-
 class ColorableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)

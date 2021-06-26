@@ -40,6 +40,10 @@ class ReverseColorWipeAnimation(ColorWipeAnimation, ReversableAnimation):
     def __init__(self, args):
         super().__init__(args=args)
 
+    def render(self):
+        import pdb; pdb.set_trace()
+        super()
+
 class FreezeAnimation(TimeoutableAnimation):
     def render(self):
         self.timeout()
