@@ -37,6 +37,7 @@ class ParallelAnimation(RangeableAnimation, MultiEffectableAnimation):
 
     def render(self):
         for effect_args in self.effects:
+            import pdb; pdb.set_trace()
             thread = Thread(target=self._renderAsync, kwargs={"args":effect_args})
             thread.start()
             thread.join()
