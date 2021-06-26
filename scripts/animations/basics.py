@@ -31,7 +31,6 @@ class BlinkAnimation(RangeableAnimation, StepableAnimation, WaitableAnimation):
 
 class ColorWipeAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimation):
     def render(self):
-        import pdb; pdb.set_trace()
         for i in self.range:
             self.strip.setPixelColor(i, self.color)
             self.strip.show()

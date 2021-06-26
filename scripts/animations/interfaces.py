@@ -40,6 +40,7 @@ class ReversableAnimation(RangeableAnimation):
 class ColorableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)
+        import pdb; pdb.set_trace()
         self.color = Color(*args.get("color_args", [0,0,0]))
 
 class DualColorableAnimation(Animation):
