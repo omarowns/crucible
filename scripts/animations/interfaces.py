@@ -76,7 +76,7 @@ class TimeoutableAnimation(Animation):
     def timeout(self):
         time.sleep(self.timeout_ms/1000.0)
 
-class ClearableAnimation(SegmentableAnimation):
+class ClearableAnimation(RangeableAnimation):
     def clear(self):
         for i in range(*self.range):
             self.strip.setPixelColor(i, Color(0,0,0))
