@@ -18,6 +18,7 @@ def mainEffectWorker():
 def subEffectWorker():
     while True:
         effect, zone = SubEffectQueue().get()
+        import pdb; pdb.set_trace()
         effect.render(zone=zone)
         SubEffectQueue().task_done()
 
