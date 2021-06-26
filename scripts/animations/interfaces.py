@@ -6,7 +6,7 @@ from strip import Strip
 
 class Stripable():
     def __init__(self, args={}):
-        super().__init__(args=args)
+        super().__init__()
         self.strip = Strip()
 
 class Animation(Stripable):
@@ -92,12 +92,12 @@ class ClearableAnimation(RangeableAnimation):
             self.strip.setPixelColor(i, Color(0,0,0))
         self.strip.show()
 
-class LoopableAnimation():
+class LoopableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args=args)
         self.loops = int(args.get("loops"))
 
-class MultiEffectableAnimation():
+class MultiEffectableAnimation(Animation):
     def __init__(self, args = {}):
-        super().__init__(args=args)
+        super().__init__()
         self.effects = args.get("effects")
