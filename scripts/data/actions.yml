@@ -199,7 +199,7 @@ actions:
         comet_size: 3
         fade_amount: 50
     - name: ClearAnimation
-- &notification:
+- &notification
   id: notification
   name: Generic Notification
   description: Generic Notification
@@ -214,3 +214,19 @@ actions:
               comet_size: 1
               fade_amount: 80
               wait_ms: 75
+- &warning-message
+  id: warning-message
+  name: Warning Message
+  description: Warning message
+  effects:
+    - name: ClearAnimation
+    - name: StaticAnimation
+      arguments:
+        color_args: [255, 83, 75]
+    - name: LoopAnimation
+      arguments:
+        loops: 10
+        effects:
+          - name: BlinkAnimation
+            steps: 25
+            wait_ms: 100

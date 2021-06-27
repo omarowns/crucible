@@ -40,13 +40,13 @@ class BlinkAnimation(RangeableAnimation, StepableAnimation, WaitableAnimation):
             self.strip.setBrightness(brightness)
             self.strip.show()
             brightness -= self.steps
-            time.sleep(self.wait_ms/1000.0)
+            self.wait()
         brightness = 0
         while brightness <= original_brightness:
             self.strip.setBrightness(brightness)
             self.strip.show()
             brightness += self.steps
-            time.sleep(self.wait_ms/1000.0)
+            self.wait()
 
 class CometAnimation(BrightnessControllableAnimation, WaitableAnimation):
     def __init__(self, args):
