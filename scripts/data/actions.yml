@@ -176,16 +176,20 @@ actions:
     - name: ClearAnimation
     - name: LoopAnimation
       arguments:
-        loops: 2
+        loops: 14
         effects:
-          - name: LoopAnimation
+          - name: SingleDynamicRandomColorAnimation
             arguments:
-              loops: 16
-              effects:
-                - name: SingleDynamicRandomColorAnimation
-                  arguments:
-                    wait_ms: 10
-          - name: ClearAnimation
+              wait_ms: 10
+    - name: ClearAnimation
+    - name: LoopAnimation
+      arguments:
+        loops: 14
+        effects:
+          - name: SingleDynamicRandomColorAnimation
+            arguments:
+              wait_ms: 10
+    - name: ClearAnimation
     - name: CometAnimation
       arguments:
         comet_color: [0, 255, 255]

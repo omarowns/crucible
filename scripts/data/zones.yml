@@ -2,7 +2,7 @@ zones:
   - id: 1
     name: Main
     start: 0
-    end: 15
+    end: 13
   - id: 2
     name: First Half
     start: 0
@@ -10,4 +10,4 @@ zones:
   - id: 3
     name: Second Half
     start: 7
-    end: 14
+    end: 13
