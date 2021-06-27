@@ -86,7 +86,12 @@ class ColorableAnimation(Animation):
         green   = (color >>  8) & 0xff
         blue    =  color        & 0xff
 
-        return Color((red - amount), (green - amount), (blue - amount), (white - amount))
+        white_faded = (white - amount > 0 and white - amount) or 0
+        red_faded = (red - amount > 0 and red - amount) or 0
+        green_faded = (green - amount > 0 and green - amount) or 0
+        blue_faded = (blue - amount > 0 and blue - amount) or 0
+
+        return Color(red_faded, green_faded, blue_faded, white_faded)
 
 class DualColorableAnimation(Animation):
     def __init__(self, args = {}):
