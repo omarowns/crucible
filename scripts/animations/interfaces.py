@@ -79,19 +79,62 @@ class ColorableAnimation(Animation):
         b3 = ((b2 * blend) + (b1 * (255 - blend))) / 256
 
         return ((w3 << 24) | (r3 << 16) | (g3 << 8) | (b3))
-
+    
     def fadeToBlackBy(self, color=None, amount=0):
+        return self.fadeToBy(target=0, color=color, amount=amount)
+    
+    def fadeToWhiteBy(self, color=None, amount=0):
+        return self.fadeToBy(target=255, color=color, amount=amount)
+    
+    def fadeToBy(self, target=0, color=None, amount=0):
         white   = (color >> 24) & 0xff
         red     = (color >> 16) & 0xff
         green   = (color >>  8) & 0xff
         blue    =  color        & 0xff
 
-        white_faded = (white - amount > 0 and white - amount) or 0
-        red_faded = (red - amount > 0 and red - amount) or 0
-        green_faded = (green - amount > 0 and green - amount) or 0
-        blue_faded = (blue - amount > 0 and blue - amount) or 0
+        # Limit the target fade to min 0 and max 255 (black and white)
+        target = (target < 0 and 0) or (target > 255 and 255) or target
+        # Restrict to only 0 or 255
+        target = (target < (255 - target) and 0) or 255
+
+        Fade = {
+            0: lambda c, a: (c - a > 0 and c - a) or 0,
+            255: lambda c, a: (c + a > 255 and c + a) or 255,
+        }
+                
+        white_faded = Fade[target](white, amount)
+        red_faded = Fade[target](red, amount)
+        green_faded = Fade[target](green, amount)
+        blue_faded = Fade[target](blue, amount)
 
         return Color(red_faded, green_faded, blue_faded, white_faded)
+
+class BrightnessControllableAnimation(RangeableAnimation, ColorableAnimation):
+    def decreaseAllPixelsBrightness(self, amount = 15):
+        for i in self.range:
+            self.decreasePixelBrightness(i, amount=amount)
+    
+    def increaseAllPixelsBrightness(self, amount = 15):
+        for i in self.range:
+            self.increasePixelBrightness(i, amount=amount)
+
+    def decreasePixelBrightness(self, pixel, amount = 15):
+        color = self.fadeToBlackBy(color=self.strip.getPixelColor(pixel), amount=amount)
+        self.strip.setPixelColor(pixel, color)
+
+    def increasePixelBrightness(self, pixel, amount = 15):
+        color = self.fadeToWhiteBy(color=self.strip.getPixelColor(pixel), amount=amount)
+        self.strip.setPixelColor(pixel, color)
+
+    def decreaseRandomPixelsBrightness(self, amount = 15, random_stdev=5):
+        for i in self.range:
+            if (random.randint(0, 10) > random_stdev):
+                self.decreasePixelBrightness(i, amount=amount)
+    
+    def increaseRandomPixelsBrightness(self, amount = 15, random_stdev=5):
+        for i in self.range:
+            if (random.randint(0, 10) > random_stdev):
+                self.increasePixelBrightness(i, amount=amount)
 
 class DualColorableAnimation(Animation):
     def __init__(self, args = {}):

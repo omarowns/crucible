@@ -169,10 +169,13 @@ actions:
     - name: ReverseColorWipeAnimation
       arguments:
         color_args: [0, 0, 0]
-        wait_ms: 7
+        wait_ms: 15
+    - name: FreezeAnimation
+      arguments:
+        timeout_ms: 1000
     - name: DynamicRandomColorAnimation
       arguments:
-        wait_ms: 5000
+        wait_ms: 2500
     - name: ClearAnimation
     - name: LoopAnimation
       arguments:
