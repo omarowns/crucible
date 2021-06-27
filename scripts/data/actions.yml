@@ -176,15 +176,16 @@ actions:
     - name: ClearAnimation
     - name: LoopAnimation
       arguments:
-        loops: 10
+        loops: 2
         effects:
-          - name: SingleDynamicRandomColorAnimation
+          - name: LoopAnimation
             arguments:
-              wait_ms: 10
-    - name: FreezeAnimation
-      arguments:
-        timeout_ms: 5000
-    - name: ClearAnimation
+              loops: 16
+              effects:
+                - name: SingleDynamicRandomColorAnimation
+                  arguments:
+                    wait_ms: 10
+          - name: ClearAnimation
     - name: CometAnimation
       arguments:
         comet_color: [0, 255, 255]
