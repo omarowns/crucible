@@ -95,7 +95,10 @@ class ColorableAnimation(Animation):
         # Limit the target fade to min 0 and max 255 (black and white)
         target = (target < 0 and 0) or (target > 255 and 255) or target
         # Restrict to only 0 or 255
-        target = (target < (255 - target) and 0) or 255
+        if target < (255 - target):
+            target = 0
+        else:
+            target = 255
 
         Fade = {
             0: lambda c, a: (c - a > 0 and c - a) or 0,
@@ -119,7 +122,6 @@ class BrightnessControllableAnimation(RangeableAnimation, ColorableAnimation):
             self.increasePixelBrightness(i, amount=amount)
 
     def decreasePixelBrightness(self, pixel, amount = 15):
-        import pdb; pdb.set_trace()
         color = self.fadeToBlackBy(color=self.strip.getPixelColor(pixel), amount=amount)
         self.strip.setPixelColor(pixel, color)
 
