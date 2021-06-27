@@ -61,7 +61,7 @@ class CometAnimation(RangeableAnimation, ColorableAnimation):
                 self.strip.setPixelColor(position + 1, self.comet_color)
 
             if self.fade_amount:
-                for _y in self.range:
+                for i in self.range:
                     if (random.randint(0, 10) > 5):
                         self.color = self.fadeToBlackBy(color=self.strip.getPixelColor(i), amount=self.fade_amount)
             self.strip.show()
