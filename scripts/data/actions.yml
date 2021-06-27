@@ -157,3 +157,36 @@ actions:
               zone_id: 3
               color_args: [0, 0, 255]
               wait_ms: 250
+- &new-effects
+  id: new-effects
+  name: Testing New Effects
+  description: Testing new effects
+  effects:
+    - name: ColorWipeAnimation
+      arguments:
+        color_args: [100, 100, 0]
+        wait_ms: 25
+    - name: ReverseColorWipeAnimation
+      arguments:
+        color_args: [0, 0, 0]
+        wait_ms: 7
+    - name: DynamicRandomColorAnimation
+      arguments:
+        wait_ms: 5000
+    - name: ClearAnimation
+    - name: LoopAnimation
+      arguments:
+        loops: 10
+        effects:
+          - name: SingleDynamicRandomColorAnimation
+            arguments:
+              wait_ms: 10
+    - name: FreezeAnimation
+      arguments:
+        timeout_ms: 5000
+    - name: ClearAnimation
+    - name: CometAnimation
+      arguments:
+        comet_color: [0, 255, 255]
+        comet_size: 2
+        fade_amount: 128

@@ -1,6 +1,7 @@
 from inspect import getmembers as implementations
 from importlib import import_module
 import time
+import random
 from rpi_ws281x import Color
 from strip import Strip
 
@@ -41,6 +42,51 @@ class ColorableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args = args)
         self.color = Color(*args.get("color_args", [0,0,0]))
+        self.fade_amount = args.get("fade_amount", None)
+    
+    def randomColor() -> Color:
+        return Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+    def colorWheel(position = 0):
+        if position < 85:
+            return Color(position * 3, 255 - position * 3, 0)
+        elif position < 170:
+            position -= 85
+            return Color(255 - position * 3, 0, position * 3)
+        else:
+            position -= 170
+            return Color(0, position * 3, 255 - position * 3)
+    
+    def colorBlend(self, color1=0, color2=0, blend=0):
+        if blend == 0:
+            return color1
+        if blend == 255:
+            return color2
+        
+        w1 = (color1 >> 24) & 0xff
+        r1 = (color1 >> 16) & 0xff
+        g1 = (color1 >>  8) & 0xff
+        b1 =  color1        & 0xff
+
+        w2 = (color2 >> 24) & 0xff
+        r2 = (color2 >> 16) & 0xff
+        g2 = (color2 >>  8) & 0xff
+        b2 =  color2        & 0xff
+
+        w3 = ((w2 * blend) + (w1 * (255 - blend))) / 256
+        r3 = ((r2 * blend) + (r1 * (255 - blend))) / 256
+        g3 = ((g2 * blend) + (g1 * (255 - blend))) / 256
+        b3 = ((b2 * blend) + (b1 * (255 - blend))) / 256
+
+        return ((w3 << 24) | (r3 << 16) | (g3 << 8) | (b3))
+
+    def fadeToBlackBy(self, color=None, amount=0):
+        w = (color >> 24) & 0xff
+        r = (color >> 16) & 0xff
+        g = (color >>  8) & 0xff
+        b =  color        & 0xff
+
+        return Color(r - amount, g - amount, b - amount, w - amount)
 
 class DualColorableAnimation(Animation):
     def __init__(self, args = {}):
@@ -99,3 +145,8 @@ class MultiEffectableAnimation(Animation):
     def __init__(self, args = {}):
         super().__init__(args=args)
         self.effects = args.get("effects")
+
+class CounterModeCallableAnimation(Animation):
+    def __init__(self, args):
+        super().__init__(args=args)
+        self.counterModeCall = args.get("counter_mode_call")
