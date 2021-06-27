@@ -228,5 +228,6 @@ actions:
         loops: 10
         effects:
           - name: BlinkAnimation
-            steps: 25
-            wait_ms: 100
+            arguments:
+              steps: 25
+              wait_ms: 100
