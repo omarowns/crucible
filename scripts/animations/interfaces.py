@@ -44,7 +44,7 @@ class ColorableAnimation(Animation):
         self.color = Color(*args.get("color_args", [0,0,0]))
         self.fade_amount = args.get("fade_amount", None)
     
-    def randomColor() -> Color:
+    def randomColor():
         return Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     def colorWheel(position = 0):
