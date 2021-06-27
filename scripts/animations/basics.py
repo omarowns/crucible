@@ -67,6 +67,18 @@ class CometAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimation):
             self.strip.show()
             self.wait()
 
+        for position in self.range.reverse():
+            for _x in range(self.comet_size):
+                self.strip.setPixelColor(position - 1, self.comet_color)
+
+            if self.fade_amount:
+                for i in self.range:
+                    if (random.randint(0, 10) > 5):
+                        self.color = self.fadeToBlackBy(color=self.strip.getPixelColor(i), amount=self.fade_amount)
+                        self.strip.setPixelColor(i, self.color)
+            self.strip.show()
+            self.wait()
+
 
 class ColorWipeAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimation):
     def render(self):
