@@ -195,3 +195,4 @@ actions:
         comet_color: [0, 255, 255]
         comet_size: 2
         fade_amount: 128
+    - name: ClearAnimation
