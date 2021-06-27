@@ -199,3 +199,18 @@ actions:
         comet_size: 3
         fade_amount: 50
     - name: ClearAnimation
+- &notification:
+  id: notification
+  name: Generic Notification
+  description: Generic Notification
+  effects:
+    - name: LoopAnimation
+      arguments:
+        loop: 2
+        effects:
+          - name: CometAnimation
+            arguments:
+              comet_color: [25, 255, 50]
+              comet_size: 1
+              fade_amount: 80
+              wait_ms: 75
