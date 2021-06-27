@@ -119,6 +119,7 @@ class BrightnessControllableAnimation(RangeableAnimation, ColorableAnimation):
             self.increasePixelBrightness(i, amount=amount)
 
     def decreasePixelBrightness(self, pixel, amount = 15):
+        import pdb; pdb.set_trace()
         color = self.fadeToBlackBy(color=self.strip.getPixelColor(pixel), amount=amount)
         self.strip.setPixelColor(pixel, color)
 
