@@ -113,28 +113,34 @@ class ColorableAnimation(Animation):
         return Color(red_faded, green_faded, blue_faded, white_faded)
 
 class BrightnessControllableAnimation(RangeableAnimation, ColorableAnimation):
-    def decreaseAllPixelsBrightness(self, amount = 15):
+    def decreaseAllPixelsBrightness(self, amount = None):
+        amount = amount or self.fade_amount
         for i in self.range:
             self.decreasePixelBrightness(i, amount=amount)
     
-    def increaseAllPixelsBrightness(self, amount = 15):
+    def increaseAllPixelsBrightness(self, amount = None):
+        amount = amount or self.fade_amount
         for i in self.range:
             self.increasePixelBrightness(i, amount=amount)
 
-    def decreasePixelBrightness(self, pixel, amount = 15):
+    def decreasePixelBrightness(self, pixel, amount = None):
+        amount = amount or self.fade_amount
         color = self.fadeToBlackBy(color=self.strip.getPixelColor(pixel), amount=amount)
         self.strip.setPixelColor(pixel, color)
 
-    def increasePixelBrightness(self, pixel, amount = 15):
+    def increasePixelBrightness(self, pixel, amount = None):
+        amount = amount or self.fade_amount
         color = self.fadeToWhiteBy(color=self.strip.getPixelColor(pixel), amount=amount)
         self.strip.setPixelColor(pixel, color)
 
-    def decreaseRandomPixelsBrightness(self, amount = 15, random_stdev=5):
+    def decreaseRandomPixelsBrightness(self, amount = None, random_stdev=5):
+        amount = amount or self.fade_amount
         for i in self.range:
             if (random.randint(0, 10) > random_stdev):
                 self.decreasePixelBrightness(i, amount=amount)
     
-    def increaseRandomPixelsBrightness(self, amount = 15, random_stdev=5):
+    def increaseRandomPixelsBrightness(self, amount = None, random_stdev=5):
+        amount = amount or self.fade_amount
         for i in self.range:
             if (random.randint(0, 10) > random_stdev):
                 self.increasePixelBrightness(i, amount=amount)

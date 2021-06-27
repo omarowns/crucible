@@ -54,23 +54,24 @@ class CometAnimation(BrightnessControllableAnimation, WaitableAnimation):
         self.comet_color = Color(*args.get("comet_color"))
         self.comet_size = args.get("comet_size", 2)
 
+    def drawComet(self, position):
+        for comet_i in range(self.comet_size):
+            t_position = position + comet_i
+            t_position = (t_position < 0 and 0) or t_position
+            t_position = (t_position > self.led_end and self.led_end) or t_position
+            self.strip.setPixelColor(t_position, self.comet_color)
+
     def render(self):
         for position in self.range:
-            for _x in range(self.comet_size):
-                self.strip.setPixelColor(position + 1, self.comet_color)
-
-            if self.fade_amount:
-                self.decreaseRandomPixelsBrightness(amount=self.fade_amount)
+            self.drawComet(position)
+            self.decreaseRandomPixelsBrightness(amount=self.fade_amount)
             self.strip.show()
             self.wait()
 
         self.range.reverse()
         for position in self.range:
-            for _x in range(self.comet_size):
-                self.strip.setPixelColor(position - 1, self.comet_color)
-
-            if self.fade_amount:
-                self.decreaseRandomPixelsBrightness(amount=self.fade_amount)
+            self.drawComet(position)
+            self.decreaseRandomPixelsBrightness(amount=self.fade_amount)
             self.strip.show()
             self.wait()
 
