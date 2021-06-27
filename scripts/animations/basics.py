@@ -64,8 +64,8 @@ class CometAnimation(BrightnessControllableAnimation, WaitableAnimation):
             self.strip.show()
             self.wait()
 
-        import pdb; pdb.set_trace()
-        for position in self.range.reverse():
+        self.range.reverse()
+        for position in self.range:
             for _x in range(self.comet_size):
                 self.strip.setPixelColor(position - 1, self.comet_color)
 
