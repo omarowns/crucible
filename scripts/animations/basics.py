@@ -48,7 +48,7 @@ class BlinkAnimation(RangeableAnimation, StepableAnimation, WaitableAnimation):
             brightness += self.steps
             time.sleep(self.wait_ms/1000.0)
 
-class CometAnimation(RangeableAnimation, ColorableAnimation):
+class CometAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimation):
     def __init__(self, args):
         super().__init__(args=args)
         self.comet_color = Color(*args.get("comet_color"))
@@ -65,6 +65,7 @@ class CometAnimation(RangeableAnimation, ColorableAnimation):
                         self.color = self.fadeToBlackBy(color=self.strip.getPixelColor(i), amount=self.fade_amount)
                         self.strip.setPixelColor(i, self.color)
             self.strip.show()
+            self.wait()
 
 
 class ColorWipeAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimation):
