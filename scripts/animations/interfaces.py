@@ -81,12 +81,12 @@ class ColorableAnimation(Animation):
         return ((w3 << 24) | (r3 << 16) | (g3 << 8) | (b3))
 
     def fadeToBlackBy(self, color=None, amount=0):
-        w = (color >> 24) & 0xff
-        r = (color >> 16) & 0xff
-        g = (color >>  8) & 0xff
-        b =  color        & 0xff
+        white   = (color >> 24) & 0xff
+        red     = (color >> 16) & 0xff
+        green   = (color >>  8) & 0xff
+        blue    =  color        & 0xff
 
-        return Color(r - amount, g - amount, b - amount, w - amount)
+        return Color((red - amount), (green - amount), (blue - amount), (white - amount))
 
 class DualColorableAnimation(Animation):
     def __init__(self, args = {}):
