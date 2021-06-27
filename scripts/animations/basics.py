@@ -56,7 +56,6 @@ class CometAnimation(RangeableAnimation, ColorableAnimation):
 
     def render(self):
         for position in self.range:
-            import pdb; pdb.set_trace()
             for _x in range(self.comet_size):
                 self.strip.setPixelColor(position + 1, self.comet_color)
 
@@ -64,6 +63,7 @@ class CometAnimation(RangeableAnimation, ColorableAnimation):
                 for i in self.range:
                     if (random.randint(0, 10) > 5):
                         self.color = self.fadeToBlackBy(color=self.strip.getPixelColor(i), amount=self.fade_amount)
+                        self.strip.setPixelColor(i, self.color)
             self.strip.show()
 
 
