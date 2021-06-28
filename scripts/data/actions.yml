@@ -220,14 +220,13 @@ actions:
   description: Warning message
   effects:
     - name: ClearAnimation
-    - name: StaticAnimation
-      arguments:
-        color_args: [255, 83, 75]
     - name: LoopAnimation
       arguments:
-        loops: 10
+        loops: 3
         effects:
-          - name: BlinkAnimation
+          - name: BreatheAnimation
             arguments:
+              color_args: [255, 53, 45]
               steps: 25
               wait_ms: 100
+    - name: ClearAnimation

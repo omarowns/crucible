@@ -38,12 +38,18 @@ class ReversableAnimation(RangeableAnimation):
         super().__init__(args=args)
         self.range.reverse()
 
-class ColorableAnimation(Animation):
+class ColorableAnimation(RangeableAnimation):
     def __init__(self, args = {}):
         super().__init__(args = args)
-        self.color = Color(*args.get("color_args", [0,0,0]))
+        self.color = Color(*args.get("color_args", None))
         self.fade_amount = args.get("fade_amount", None)
     
+    def fill(self, range = None, color = None):
+        range = range or self.range
+        color = color or self.color
+        for i in range:
+            self.strip.setPixelColor(i, color)
+
     def randomColor(self):
         return Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
@@ -112,7 +118,6 @@ class ColorableAnimation(Animation):
 
         return Color(red_faded, green_faded, blue_faded, white_faded)
 
-class BrightnessControllableAnimation(RangeableAnimation, ColorableAnimation):
     def decreaseAllPixelsBrightness(self, amount = None):
         amount = amount or self.fade_amount
         for i in self.range:
@@ -125,12 +130,12 @@ class BrightnessControllableAnimation(RangeableAnimation, ColorableAnimation):
 
     def decreasePixelBrightness(self, pixel, amount = None):
         amount = amount or self.fade_amount
-        color = self.fadeToBlackBy(color=self.strip.getPixelColor(pixel), amount=amount)
+        color = self.color or self.fadeToBlackBy(color=self.strip.getPixelColor(pixel), amount=amount)
         self.strip.setPixelColor(pixel, color)
 
     def increasePixelBrightness(self, pixel, amount = None):
         amount = amount or self.fade_amount
-        color = self.fadeToWhiteBy(color=self.strip.getPixelColor(pixel), amount=amount)
+        color = self.color or self.fadeToWhiteBy(color=self.strip.getPixelColor(pixel), amount=amount)
         self.strip.setPixelColor(pixel, color)
 
     def decreaseRandomPixelsBrightness(self, amount = None, random_stdev=5):

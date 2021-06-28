@@ -6,7 +6,7 @@ class ClearAnimation(ClearableAnimation):
     def render(self):
         self.clear()
 
-class StaticAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimation):
+class StaticAnimation(ColorableAnimation, WaitableAnimation):
     def render(self):
         for i in self.range:
             self.strip.setPixelColor(i, self.color)
@@ -32,6 +32,20 @@ class SingleDynamicRandomColorAnimation(DynamicRandomColorAnimation):
         self.strip.show()
         self.wait()
 
+class BreatheAnimation(ColorableAnimation, StepableAnimation, WaitableAnimation):
+    def render(self):
+        brightness_steps = list(range(0, 255))
+        brightness_steps = [*brightness_steps, *brightness_steps[::-1]]
+
+        self.strip.setBrightness(0)
+        self.color = self.color or Color(255, 255, 255)
+        self.fill()
+        self.strip.show()
+
+        for bright_i in range(0, len(brightness_steps), self.steps):
+            self.strip.setBrightness(brightness_steps[bright_i])
+            self.wait()
+
 class BlinkAnimation(RangeableAnimation, StepableAnimation, WaitableAnimation):
     def render(self):
         original_brightness = self.strip.getBrightness()
@@ -48,7 +62,7 @@ class BlinkAnimation(RangeableAnimation, StepableAnimation, WaitableAnimation):
             brightness += self.steps
             self.wait()
 
-class CometAnimation(BrightnessControllableAnimation, WaitableAnimation):
+class CometAnimation(ColorableAnimation, WaitableAnimation):
     def __init__(self, args):
         super().__init__(args=args)
         self.comet_color = Color(*args.get("comet_color"))
@@ -76,7 +90,7 @@ class CometAnimation(BrightnessControllableAnimation, WaitableAnimation):
             self.wait()
 
 
-class ColorWipeAnimation(RangeableAnimation, ColorableAnimation, WaitableAnimation):
+class ColorWipeAnimation(ColorableAnimation, WaitableAnimation):
     def render(self):
         for i in self.range:
             self.strip.setPixelColor(i, self.color)
