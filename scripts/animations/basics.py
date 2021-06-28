@@ -44,6 +44,7 @@ class BreatheAnimation(ColorableAnimation, StepableAnimation, WaitableAnimation)
 
         for bright_i in range(0, len(brightness_steps), self.steps):
             self.strip.setBrightness(brightness_steps[bright_i])
+            self.strip.show()
             self.wait()
 
 class BlinkAnimation(RangeableAnimation, StepableAnimation, WaitableAnimation):
