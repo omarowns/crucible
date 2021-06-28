@@ -227,6 +227,6 @@ actions:
           - name: BreatheAnimation
             arguments:
               color_args: [255, 53, 45]
-              steps: 25
+              steps: 50
               wait_ms: 75
     - name: ClearAnimation
