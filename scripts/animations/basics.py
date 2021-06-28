@@ -37,9 +37,9 @@ class BreatheAnimation(ColorableAnimation, StepableAnimation, WaitableAnimation)
         brightness_steps = list(range(0, 255))
         brightness_steps = [*brightness_steps, *brightness_steps[::-1]]
 
-        self.strip.setBrightness(0)
         self.color = self.color or Color(255, 255, 255)
         self.fill()
+        self.strip.setBrightness(0)
         self.strip.show()
 
         for bright_i in range(0, len(brightness_steps), self.steps):
